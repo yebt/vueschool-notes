@@ -10,19 +10,19 @@
         {
           "name": "Ride the Storm Serpent",
           "slug": "ride-storm-serpent",
-          "image": "",
+          "image": "ride-storm-serpent.webp",
           "description": "Tame and ride a legendary sky serpent through tempestuous skies and race between the isles."
         },
         {
           "name": "Explore the Cloud Ruins",
           "slug": "explore-cloud-ruins",
-          "image": "",
+          "image": "explore-cloud-ruins.webp",
           "description": "Investigate the ancient ruins of a forgotten sky civilization, filled with traps, puzzles, and forgotten knowledge."
         },
         {
           "name": "Harvest Sky Crystals",
           "slug": "harvest-sky-crystals",
-          "image": "",
+          "image": "harvest-sky-crystals.webp",
           "description": "Collect rare, floating crystals used for powerful enchantments, guarded by territorial sky elementals."
         }
       ]
@@ -37,25 +37,25 @@
         {
           "name": "Speak with the Groveheart",
           "slug": "speak-with-groveheart",
-          "image": "",
+          "image": "speak-with-groveheart.webp",
           "description": "Earn the favor of the forest’s ancient guardian and gain knowledge of hidden trails and forest lore."
         },
         {
           "name": "Survive the Nightshade Trials",
           "slug": "survive-nightshade-trials",
-          "image": "",
+          "image": "survive-nightshade-trials.webp",
           "description": "Prove your worth by completing a deadly trial set by the forest spirits in a dreamlike realm."
         },
         {
           "name": "Hunt the Thornbeast",
           "slug": "hunt-thornbeast",
-          "image": "",
+          "image": "hunt-thornbeast.webp",
           "description": "Track and defeat a massive, plant-like predator that stalks intruders in the Hollow."
         },
         {
           "name": "Decode the Bark Runes",
           "slug": "decode-bark-runes",
-          "image": "",
+          "image": "decode-bark-runes.webp",
           "description": "Discover an ancient language carved into trees that reveals forest secrets and lost spells."
         }
       ]
@@ -70,19 +70,19 @@
         {
           "name": "Enter the Mirage Citadel",
           "slug": "enter-mirage-citadel",
-          "image": "",
+          "image": "enter-mirage-citadel.webp",
           "description": "Find and navigate the elusive, ever-moving fortress of the Sand Djinn to earn magical boons."
         },
         {
           "name": "Race the Sand Leviathans",
           "slug": "race-sand-leviathans",
-          "image": "",
+          "image": "race-sand-leviathans.webp",
           "description": "Ride sandships across the dunes while outrunning massive subterranean beasts."
         },
         {
           "name": "Uncover the Hourglass Vaults",
           "slug": "uncover-hourglass-vaults",
-          "image": "",
+          "image": "uncover-hourglass-vaults.webp",
           "description": "Explore time-twisted ruins that reveal different histories and outcomes each time you enter."
         }
       ]
@@ -97,25 +97,25 @@
         {
           "name": "Craft a Flamebound Relic",
           "slug": "craft-flamebound-relic",
-          "image": "",
+          "image": "craft-flamebound-relic.webp",
           "description": "Forge a powerful item using rare metals and elemental flames, under the watch of ancient smith spirits."
         },
         {
           "name": "Battle the Molten Wyrm",
           "slug": "battle-molten-wyrm",
-          "image": "",
+          "image": "battle-molten-wyrm.webp",
           "description": "Face a titanic lava dragon said to guard the deepest forge and the secrets of the Emberdeep."
         },
         {
           "name": "Join the Trial of Sparks",
           "slug": "join-trial-sparks",
-          "image": "",
+          "image": "join-trial-sparks.webp",
           "description": "Compete in a legendary contest of skill and will to earn a place among the master forgemasters."
         },
         {
           "name": "Rescue the Ironbound",
           "slug": "rescue-ironbound",
-          "image": "",
+          "image": "rescue-ironbound.webp",
           "description": "Free a group of enslaved dwarves held by rogue fire spirits who have seized control of a sacred forge."
         }
       ]
@@ -130,25 +130,25 @@
         {
           "name": "Unravel a Memory Echo",
           "slug": "unravel-memory-echo",
-          "image": "",
+          "image": "unravel-memory-echo.webp",
           "description": "Follow ghostly trails of the past to uncover hidden truths and alter your fate."
         },
         {
           "name": "Dance with the Moonshades",
           "slug": "dance-moonshades",
-          "image": "",
+          "image": "dance-moonshades.webp",
           "description": "Join a mystical lunar celebration with ghostly beings that grant boons—or curses."
         },
         {
           "name": "Steal a Star-Touched Relic",
           "slug": "steal-star-touched-relic",
-          "image": "",
+          "image": "steal-star-touched-relic.webp",
           "description": "Infiltrate the palace of moonlight and shadows to claim a magical relic bound to the stars."
         },
         {
           "name": "Consult the Lunar Oracle",
           "slug": "consult-lunar-oracle",
-          "image": "",
+          "image": "consult-lunar-oracle.webp",
           "description": "Seek visions from the enigmatic oracle who speaks in riddles and can rewrite destinies under a full moon."
         }
       ]
@@ -163,25 +163,25 @@
         {
           "name": "Stellar Navigators' Tournament",
           "slug": "stellar-navigators-tournament",
-          "image": "",
+          "image": "stellar-navigators-tournament.webp",
           "description": "Compete in a solar ship race through asteroid tunnels and electrified nebulas. Only the best pilots survive the final curve: the Spiral of Fire."
         },
         {
           "name": "Mystery of the Living Map",
           "slug": "mystery-of-the-living-map",
-          "image": "",
+          "image": "mystery-of-the-living-map.webp",
           "description": "A map that constantly changes with the stars may lead to a forgotten armory... or a deadly trap. It reveals itself only to those with a true explorer’s spirit."
         },
         {
           "name": "Duel of a Thousand Bolts",
           "slug": "duel-of-a-thousand-bolts",
-          "image": "",
+          "image": "duel-of-a-thousand-bolts.webp",
           "description": "An ancient tradition among space pirates: duels on magnetic platforms with plasma swords and shifting gravity. Honor, reputation, and stellar credits are at stake."
         },
         {
           "name": "The Black Hole Tavern",
           "slug": "black-hole-tavern",
-          "image": "",
+          "image": "black-hole-tavern.webp",
           "description": "A bar floating in a gravitational bubble where time flows differently. Here, intergalactic secrets, rare tech components, and black market favors are traded."
         }
       ]
