@@ -3,7 +3,7 @@
     {
       "name": "Zephyros, the Floating Isles",
       "slug": "zephyros-floating-isles",
-      "image": "",
+      "image": "zephyros-floating-isles.webp",
       "id": 1,
       "description": "A cluster of lush, floating islands suspended in the sky by ancient wind magic. Zephyros is home to sky beasts, crystalline waterfalls, and ancient ruins hidden in the clouds.",
       "experiences": [
@@ -30,7 +30,7 @@
     {
       "name": "Thornspire Hollow",
       "slug": "thornspire-hollow",
-      "image": "",
+      "image": "thornspire-hollow.webp",
       "id": 2,
       "description": "A dense, twisted forest ruled by sentient plants and shadow spirits. Few return from its ever-shifting paths, but great secrets lie within its dark heart.",
       "experiences": [
@@ -63,7 +63,7 @@
     {
       "name": "Crimson Dunes of Val'Tharan",
       "slug": "crimson-dunes-valtharan",
-      "image": "",
+      "image": "crimson-dunes-valtharan.webp",
       "id": 3,
       "description": "A vast desert of blood-red sand where time flows strangely, and ancient djinn rule over shifting palaces beneath the dunes.",
       "experiences": [
@@ -90,7 +90,7 @@
     {
       "name": "The Emberdeep Forge",
       "slug": "emberdeep-forge",
-      "image": "",
+      "image": "emberdeep-forge.webp",
       "id": 4,
       "description": "A subterranean world lit by rivers of lava and colossal forges powered by fire elementals. Legendary weapons and cursed relics are born here.",
       "experiences": [
@@ -123,7 +123,7 @@
     {
       "name": "Lunareth, City of Echoes",
       "slug": "lunareth-city-echoes",
-      "image": "",
+      "image": "lunareth-city-echoes.webp",
       "id": 5,
       "description": "A spectral city that appears only under moonlight, where whispers of the past shape reality. It’s a place of forgotten memories, lunar magic, and haunted beauty.",
       "experiences": [
@@ -156,7 +156,7 @@
     {
       "name": "Astharis, the Port of Stars",
       "slug": "astharis-port-of-stars",
-      "image": "",
+      "image": "astharis-port-of-stars.webp",
       "id": 6,
       "description": "Astharis is a space station turned interplanetary trade port. Built upon the remains of an ancient stellar leviathan, it blends advanced technology with nautical-inspired architecture. Galactic corsairs, exoplanet merchants, and wise starfarers all gather here.",
       "experiences": [
