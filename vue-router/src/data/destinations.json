@@ -1,0 +1,190 @@
+{
+  "destinations": [
+    {
+      "name": "Zephyros, the Floating Isles",
+      "slug": "zephyros-floating-isles",
+      "image": "",
+      "id": 1,
+      "description": "A cluster of lush, floating islands suspended in the sky by ancient wind magic. Zephyros is home to sky beasts, crystalline waterfalls, and ancient ruins hidden in the clouds.",
+      "experiences": [
+        {
+          "name": "Ride the Storm Serpent",
+          "slug": "ride-storm-serpent",
+          "image": "",
+          "description": "Tame and ride a legendary sky serpent through tempestuous skies and race between the isles."
+        },
+        {
+          "name": "Explore the Cloud Ruins",
+          "slug": "explore-cloud-ruins",
+          "image": "",
+          "description": "Investigate the ancient ruins of a forgotten sky civilization, filled with traps, puzzles, and forgotten knowledge."
+        },
+        {
+          "name": "Harvest Sky Crystals",
+          "slug": "harvest-sky-crystals",
+          "image": "",
+          "description": "Collect rare, floating crystals used for powerful enchantments, guarded by territorial sky elementals."
+        }
+      ]
+    },
+    {
+      "name": "Thornspire Hollow",
+      "slug": "thornspire-hollow",
+      "image": "",
+      "id": 2,
+      "description": "A dense, twisted forest ruled by sentient plants and shadow spirits. Few return from its ever-shifting paths, but great secrets lie within its dark heart.",
+      "experiences": [
+        {
+          "name": "Speak with the Groveheart",
+          "slug": "speak-with-groveheart",
+          "image": "",
+          "description": "Earn the favor of the forest’s ancient guardian and gain knowledge of hidden trails and forest lore."
+        },
+        {
+          "name": "Survive the Nightshade Trials",
+          "slug": "survive-nightshade-trials",
+          "image": "",
+          "description": "Prove your worth by completing a deadly trial set by the forest spirits in a dreamlike realm."
+        },
+        {
+          "name": "Hunt the Thornbeast",
+          "slug": "hunt-thornbeast",
+          "image": "",
+          "description": "Track and defeat a massive, plant-like predator that stalks intruders in the Hollow."
+        },
+        {
+          "name": "Decode the Bark Runes",
+          "slug": "decode-bark-runes",
+          "image": "",
+          "description": "Discover an ancient language carved into trees that reveals forest secrets and lost spells."
+        }
+      ]
+    },
+    {
+      "name": "Crimson Dunes of Val'Tharan",
+      "slug": "crimson-dunes-valtharan",
+      "image": "",
+      "id": 3,
+      "description": "A vast desert of blood-red sand where time flows strangely, and ancient djinn rule over shifting palaces beneath the dunes.",
+      "experiences": [
+        {
+          "name": "Enter the Mirage Citadel",
+          "slug": "enter-mirage-citadel",
+          "image": "",
+          "description": "Find and navigate the elusive, ever-moving fortress of the Sand Djinn to earn magical boons."
+        },
+        {
+          "name": "Race the Sand Leviathans",
+          "slug": "race-sand-leviathans",
+          "image": "",
+          "description": "Ride sandships across the dunes while outrunning massive subterranean beasts."
+        },
+        {
+          "name": "Uncover the Hourglass Vaults",
+          "slug": "uncover-hourglass-vaults",
+          "image": "",
+          "description": "Explore time-twisted ruins that reveal different histories and outcomes each time you enter."
+        }
+      ]
+    },
+    {
+      "name": "The Emberdeep Forge",
+      "slug": "emberdeep-forge",
+      "image": "",
+      "id": 4,
+      "description": "A subterranean world lit by rivers of lava and colossal forges powered by fire elementals. Legendary weapons and cursed relics are born here.",
+      "experiences": [
+        {
+          "name": "Craft a Flamebound Relic",
+          "slug": "craft-flamebound-relic",
+          "image": "",
+          "description": "Forge a powerful item using rare metals and elemental flames, under the watch of ancient smith spirits."
+        },
+        {
+          "name": "Battle the Molten Wyrm",
+          "slug": "battle-molten-wyrm",
+          "image": "",
+          "description": "Face a titanic lava dragon said to guard the deepest forge and the secrets of the Emberdeep."
+        },
+        {
+          "name": "Join the Trial of Sparks",
+          "slug": "join-trial-sparks",
+          "image": "",
+          "description": "Compete in a legendary contest of skill and will to earn a place among the master forgemasters."
+        },
+        {
+          "name": "Rescue the Ironbound",
+          "slug": "rescue-ironbound",
+          "image": "",
+          "description": "Free a group of enslaved dwarves held by rogue fire spirits who have seized control of a sacred forge."
+        }
+      ]
+    },
+    {
+      "name": "Lunareth, City of Echoes",
+      "slug": "lunareth-city-echoes",
+      "image": "",
+      "id": 5,
+      "description": "A spectral city that appears only under moonlight, where whispers of the past shape reality. It’s a place of forgotten memories, lunar magic, and haunted beauty.",
+      "experiences": [
+        {
+          "name": "Unravel a Memory Echo",
+          "slug": "unravel-memory-echo",
+          "image": "",
+          "description": "Follow ghostly trails of the past to uncover hidden truths and alter your fate."
+        },
+        {
+          "name": "Dance with the Moonshades",
+          "slug": "dance-moonshades",
+          "image": "",
+          "description": "Join a mystical lunar celebration with ghostly beings that grant boons—or curses."
+        },
+        {
+          "name": "Steal a Star-Touched Relic",
+          "slug": "steal-star-touched-relic",
+          "image": "",
+          "description": "Infiltrate the palace of moonlight and shadows to claim a magical relic bound to the stars."
+        },
+        {
+          "name": "Consult the Lunar Oracle",
+          "slug": "consult-lunar-oracle",
+          "image": "",
+          "description": "Seek visions from the enigmatic oracle who speaks in riddles and can rewrite destinies under a full moon."
+        }
+      ]
+    },
+    {
+      "name": "Astharis, the Port of Stars",
+      "slug": "astharis-port-of-stars",
+      "image": "",
+      "id": 6,
+      "description": "Astharis is a space station turned interplanetary trade port. Built upon the remains of an ancient stellar leviathan, it blends advanced technology with nautical-inspired architecture. Galactic corsairs, exoplanet merchants, and wise starfarers all gather here.",
+      "experiences": [
+        {
+          "name": "Stellar Navigators' Tournament",
+          "slug": "stellar-navigators-tournament",
+          "image": "",
+          "description": "Compete in a solar ship race through asteroid tunnels and electrified nebulas. Only the best pilots survive the final curve: the Spiral of Fire."
+        },
+        {
+          "name": "Mystery of the Living Map",
+          "slug": "mystery-of-the-living-map",
+          "image": "",
+          "description": "A map that constantly changes with the stars may lead to a forgotten armory... or a deadly trap. It reveals itself only to those with a true explorer’s spirit."
+        },
+        {
+          "name": "Duel of a Thousand Bolts",
+          "slug": "duel-of-a-thousand-bolts",
+          "image": "",
+          "description": "An ancient tradition among space pirates: duels on magnetic platforms with plasma swords and shifting gravity. Honor, reputation, and stellar credits are at stake."
+        },
+        {
+          "name": "The Black Hole Tavern",
+          "slug": "black-hole-tavern",
+          "image": "",
+          "description": "A bar floating in a gravitational bubble where time flows differently. Here, intergalactic secrets, rare tech components, and black market favors are traded."
+        }
+      ]
+    }
+  ]
+}
