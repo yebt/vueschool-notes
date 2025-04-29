@@ -1,15 +1,10 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import HeaderSection from './components/sections/HeaderSection.vue';
+
+</script>
 
 <template>
-  <header class="container">
-    <nav>
-      <ul>
-        <li><router-link to="/">Home</router-link></li>
-        <li><router-link to="/about">About</router-link></li>
-        <!-- <li><router-link to="/zephyros">Zephyros</router-link></li> -->
-      </ul>
-    </nav>
-  </header>
+  <HeaderSection />
   <main class="container">
     <router-view></router-view>
   </main>

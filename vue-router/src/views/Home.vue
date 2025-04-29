@@ -11,11 +11,16 @@ const destinations = sourceData.destinations
       <p>This is the home view</p>
     </hgroup>
   </section>
-  <hr>
+  <hr />
   <section class="gridder">
-    <router-link class="linker-card" v-for="destiny in destinations" :key="destiny.id" :to="destiny.slug">
-      <h4>{{ destiny.name }}</h4>
-      <img :src="`/images/${destiny.image}`" :alt="destiny.name" />
+    <!-- hope -->
+    <router-link class="" v-for="destiny in destinations" :key="destiny.id" :to="destiny.slug">
+      <article class="linker-card">
+        <header>
+          <h4>{{ destiny.name }}</h4>
+        </header>
+        <img :src="`/images/${destiny.image}`" :alt="destiny.name" />
+      </article>
     </router-link>
   </section>
 </template>
