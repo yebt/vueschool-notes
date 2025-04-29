@@ -1,1 +1,16 @@
-@use '@picocss/pico/scss/pico' with($theme-color: 'indigo');
+@use '@picocss/pico/scss/pico' with ($theme-color: 'indigo');
+
+// grid system
+.gridder {
+  display: grid;
+  gap: 1.5rem;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+}
+
+.linker-card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  justify-content: space-between;
+}
+
