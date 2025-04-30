@@ -14,7 +14,8 @@ const destinations = sourceData.destinations
   <hr />
   <section class="gridder">
     <!-- hope -->
-    <router-link class="" v-for="destiny in destinations" :key="destiny.id" :to="destiny.slug">
+    <router-link class="" v-for="destiny in destinations" :key="destiny.id"
+      :to="{ name: 'destination.show', params: { id: destiny.id } }">
       <article class="linker-card">
         <header>
           <h4>{{ destiny.name }}</h4>

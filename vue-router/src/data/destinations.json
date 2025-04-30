@@ -5,7 +5,7 @@
       "slug": "zephyros-floating-isles",
       "image": "zephyros-floating-isles.webp",
       "id": 1,
-      "description": "A cluster of lush, floating islands suspended in the sky by ancient wind magic. Zephyros is home to sky beasts, crystalline waterfalls, and ancient ruins hidden in the clouds.",
+      "description": "Suspended in the skies by ancient wind magic, the floating isles of Zephyros form an ethereal landscape of lush greenery, crystal waterfalls that plunge into the clouds, and forgotten ruins drifting through the air. It is a place where the sky itself breathes with life, home to legendary aerial beasts and invisible elementals guarding its secrets. Those brave enough to soar its skies discover lost wonders, ancient technologies, and a unique bond with the elemental forces of air.",
       "experiences": [
         {
           "name": "Ride the Storm Serpent",
@@ -32,7 +32,7 @@
       "slug": "thornspire-hollow",
       "image": "thornspire-hollow.webp",
       "id": 2,
-      "description": "A dense, twisted forest ruled by sentient plants and shadow spirits. Few return from its ever-shifting paths, but great secrets lie within its dark heart.",
+      "description": "Thornspire Hollow is a sentient, ever-shifting forest where the branches twist as if they breathe and the paths alter beneath your feet. The plants think, the shadows whisper, and everything seems to watch you from the darkness. Entering its heart is like stepping into a living, mystical mind, where every step may reveal a lost truth—or seal your fate. Ancient lore, spirit trials, and hidden guardians lie within, making Thornspire a realm of both danger and deep transformation.",
       "experiences": [
         {
           "name": "Speak with the Groveheart",
@@ -65,7 +65,7 @@
       "slug": "crimson-dunes-valtharan",
       "image": "crimson-dunes-valtharan.webp",
       "id": 3,
-      "description": "A vast desert of blood-red sand where time flows strangely, and ancient djinn rule over shifting palaces beneath the dunes.",
+      "description": "In the heart of a desert made of blood-red sand, time itself flows like a mirage, and impossibilities take shape. Val’Tharan is a realm ruled by desert djinn, where entire palaces drift beneath the dunes and every storm might be a gateway to another moment in time. Legends speak of invisible cities, titanic creatures beneath the sands, and riddles bound in living hourglasses. Only those who understand the dance of time can uncover its secrets and return with stories that defy belief.",
       "experiences": [
         {
           "name": "Enter the Mirage Citadel",
@@ -92,7 +92,7 @@
       "slug": "emberdeep-forge",
       "image": "emberdeep-forge.webp",
       "id": 4,
-      "description": "A subterranean world lit by rivers of lava and colossal forges powered by fire elementals. Legendary weapons and cursed relics are born here.",
+      "description": "Hidden deep within the world’s molten heart, the Emberdeep Forge is a realm of eternal fire and monumental forges where enchanted metal sings and elementals dance. Rivers of lava light immense halls filled with living anvils, enchanted hammers, and smiths whose skills verge on the divine. Here, soul-bound weapons and legendary relics are born. But with the flame comes danger: fiery beasts, merciless trials, and ancient spirits who accept only strength. Emberdeep tempers character as fiercely as it does steel.",
       "experiences": [
         {
           "name": "Craft a Flamebound Relic",
@@ -125,7 +125,7 @@
       "slug": "lunareth-city-echoes",
       "image": "lunareth-city-echoes.webp",
       "id": 5,
-      "description": "A spectral city that appears only under moonlight, where whispers of the past shape reality. It’s a place of forgotten memories, lunar magic, and haunted beauty.",
+      "description": "Visible only under moonlight, Lunareth is a dreamlike city where architecture shimmers like reflections on water and its streets echo with remnants of the past. Every corner hums with forgotten memories and fragments of lives once lived, offering chances to rediscover stories the world tried to bury. Its inhabitants are specters—former sages, lovers, warriors, and oracles—woven into a tapestry of lunar magic that can reshape the present. It is a realm of melancholic beauty and unfathomable power, where every choice ripples through eternity.",
       "experiences": [
         {
           "name": "Unravel a Memory Echo",
@@ -158,7 +158,7 @@
       "slug": "astharis-port-of-stars",
       "image": "astharis-port-of-stars.webp",
       "id": 6,
-      "description": "Astharis is a space station turned interplanetary trade port. Built upon the remains of an ancient stellar leviathan, it blends advanced technology with nautical-inspired architecture. Galactic corsairs, exoplanet merchants, and wise starfarers all gather here.",
+      "description": "Built upon the cosmic corpse of a stellar leviathan, Astharis rises as an interstellar port where cultures, technologies, and secrets from every corner of the galaxy converge. Its docks float in open void, adorned with quantum-lit masts, and its architecture blends nautical themes with alien elegance. Star corsairs, exoplanet traders, and ancient wayfarers gather here, exchanging everything from volcanic spices to living maps that point toward forgotten civilizations. Astharis is more than a port—it’s a crossroads of destinies.",
       "experiences": [
         {
           "name": "Stellar Navigators' Tournament",
