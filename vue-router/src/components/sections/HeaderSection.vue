@@ -1,10 +1,34 @@
+<script setup lang="ts">
+import sourceData from '@/data/destinations.json'
+
+const destinations = sourceData.destinations
+</script>
+
 <template>
   <header class="container">
     <nav>
       <ul>
-        <li><router-link to="/">Home</router-link></li>
+        <li>
+          <!-- Home -->
+          <router-link to="/">
+            <h3>Vue Router</h3>
+          </router-link>
+        </li>
+        <!-- About -->
         <li><router-link to="/about">About</router-link></li>
         <!-- <li><router-link to="/zephyros">Zephyros</router-link></li> -->
+        <!-- Dynamic route destination -->
+        <li v-for="destiny in destinations" :key="destiny.id">
+          <router-link class="outline" :to="{
+            name: 'destination.show', params: {
+              id: destiny.id,
+              slug: destiny.slug
+            }
+          }">
+            {{ destiny.name.split(' ')[0].split(',')[0] }}
+          </router-link>
+        </li>
+
       </ul>
     </nav>
   </header>

@@ -15,10 +15,10 @@ const destinationObj = computed(() => {
   )
 })
 </script>
-
+<!--NOTE: when use the same instance, is more efficient that create a new-->
 <template>
   <section>
-    <h1>{{ destinationObj?.name }}</h1>
+    <h1 class="destination-title">{{ destinationObj?.name }}</h1>
     <article class="destination-card">
       <img :src="`/images/${destinationObj?.image}`" :alt="destinationObj?.name">
       <p>{{ destinationObj?.description }}</p>
@@ -27,6 +27,9 @@ const destinationObj = computed(() => {
 </template>
 
 <style scoped>
+.destination-title{
+  margin-bottom: 2rem;
+}
 .destination-card {
   align-items: center;
   padding: 0;
