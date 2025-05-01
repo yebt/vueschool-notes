@@ -1,0 +1,190 @@
+{
+  "destinations": [
+    {
+      "name": "Zephyros, the Floating Isles",
+      "slug": "zephyros-floating-isles",
+      "image": "zephyros-floating-isles.webp",
+      "id": 1,
+      "description": "Suspended in the skies by ancient wind magic, the floating isles of Zephyros form an ethereal landscape of lush greenery, crystal waterfalls that plunge into the clouds, and forgotten ruins drifting through the air. It is a place where the sky itself breathes with life, home to legendary aerial beasts and invisible elementals guarding its secrets. Those brave enough to soar its skies discover lost wonders, ancient technologies, and a unique bond with the elemental forces of air.",
+      "experiences": [
+        {
+          "name": "Ride the Storm Serpent",
+          "slug": "ride-storm-serpent",
+          "image": "ride-storm-serpent.webp",
+          "description": "Tame and ride a legendary sky serpent through tempestuous skies and race between the isles."
+        },
+        {
+          "name": "Explore the Cloud Ruins",
+          "slug": "explore-cloud-ruins",
+          "image": "explore-cloud-ruins.webp",
+          "description": "Investigate the ancient ruins of a forgotten sky civilization, filled with traps, puzzles, and forgotten knowledge."
+        },
+        {
+          "name": "Harvest Sky Crystals",
+          "slug": "harvest-sky-crystals",
+          "image": "harvest-sky-crystals.webp",
+          "description": "Collect rare, floating crystals used for powerful enchantments, guarded by territorial sky elementals."
+        }
+      ]
+    },
+    {
+      "name": "Thornspire Hollow",
+      "slug": "thornspire-hollow",
+      "image": "thornspire-hollow.webp",
+      "id": 2,
+      "description": "Thornspire Hollow is a sentient, ever-shifting forest where the branches twist as if they breathe and the paths alter beneath your feet. The plants think, the shadows whisper, and everything seems to watch you from the darkness. Entering its heart is like stepping into a living, mystical mind, where every step may reveal a lost truth—or seal your fate. Ancient lore, spirit trials, and hidden guardians lie within, making Thornspire a realm of both danger and deep transformation.",
+      "experiences": [
+        {
+          "name": "Speak with the Groveheart",
+          "slug": "speak-with-groveheart",
+          "image": "speak-with-groveheart.webp",
+          "description": "Earn the favor of the forest’s ancient guardian and gain knowledge of hidden trails and forest lore."
+        },
+        {
+          "name": "Survive the Nightshade Trials",
+          "slug": "survive-nightshade-trials",
+          "image": "survive-nightshade-trials.webp",
+          "description": "Prove your worth by completing a deadly trial set by the forest spirits in a dreamlike realm."
+        },
+        {
+          "name": "Hunt the Thornbeast",
+          "slug": "hunt-thornbeast",
+          "image": "hunt-thornbeast.webp",
+          "description": "Track and defeat a massive, plant-like predator that stalks intruders in the Hollow."
+        },
+        {
+          "name": "Decode the Bark Runes",
+          "slug": "decode-bark-runes",
+          "image": "decode-bark-runes.webp",
+          "description": "Discover an ancient language carved into trees that reveals forest secrets and lost spells."
+        }
+      ]
+    },
+    {
+      "name": "Crimson Dunes of Val'Tharan",
+      "slug": "crimson-dunes-valtharan",
+      "image": "crimson-dunes-valtharan.webp",
+      "id": 3,
+      "description": "In the heart of a desert made of blood-red sand, time itself flows like a mirage, and impossibilities take shape. Val’Tharan is a realm ruled by desert djinn, where entire palaces drift beneath the dunes and every storm might be a gateway to another moment in time. Legends speak of invisible cities, titanic creatures beneath the sands, and riddles bound in living hourglasses. Only those who understand the dance of time can uncover its secrets and return with stories that defy belief.",
+      "experiences": [
+        {
+          "name": "Enter the Mirage Citadel",
+          "slug": "enter-mirage-citadel",
+          "image": "enter-mirage-citadel.webp",
+          "description": "Find and navigate the elusive, ever-moving fortress of the Sand Djinn to earn magical boons."
+        },
+        {
+          "name": "Race the Sand Leviathans",
+          "slug": "race-sand-leviathans",
+          "image": "race-sand-leviathans.webp",
+          "description": "Ride sandships across the dunes while outrunning massive subterranean beasts."
+        },
+        {
+          "name": "Uncover the Hourglass Vaults",
+          "slug": "uncover-hourglass-vaults",
+          "image": "uncover-hourglass-vaults.webp",
+          "description": "Explore time-twisted ruins that reveal different histories and outcomes each time you enter."
+        }
+      ]
+    },
+    {
+      "name": "The Emberdeep Forge",
+      "slug": "emberdeep-forge",
+      "image": "emberdeep-forge.webp",
+      "id": 4,
+      "description": "Hidden deep within the world’s molten heart, the Emberdeep Forge is a realm of eternal fire and monumental forges where enchanted metal sings and elementals dance. Rivers of lava light immense halls filled with living anvils, enchanted hammers, and smiths whose skills verge on the divine. Here, soul-bound weapons and legendary relics are born. But with the flame comes danger: fiery beasts, merciless trials, and ancient spirits who accept only strength. Emberdeep tempers character as fiercely as it does steel.",
+      "experiences": [
+        {
+          "name": "Craft a Flamebound Relic",
+          "slug": "craft-flamebound-relic",
+          "image": "craft-flamebound-relic.webp",
+          "description": "Forge a powerful item using rare metals and elemental flames, under the watch of ancient smith spirits."
+        },
+        {
+          "name": "Battle the Molten Wyrm",
+          "slug": "battle-molten-wyrm",
+          "image": "battle-molten-wyrm.webp",
+          "description": "Face a titanic lava dragon said to guard the deepest forge and the secrets of the Emberdeep."
+        },
+        {
+          "name": "Join the Trial of Sparks",
+          "slug": "join-trial-sparks",
+          "image": "join-trial-sparks.webp",
+          "description": "Compete in a legendary contest of skill and will to earn a place among the master forgemasters."
+        },
+        {
+          "name": "Rescue the Ironbound",
+          "slug": "rescue-ironbound",
+          "image": "rescue-ironbound.webp",
+          "description": "Free a group of enslaved dwarves held by rogue fire spirits who have seized control of a sacred forge."
+        }
+      ]
+    },
+    {
+      "name": "Lunareth, City of Echoes",
+      "slug": "lunareth-city-echoes",
+      "image": "lunareth-city-echoes.webp",
+      "id": 5,
+      "description": "Visible only under moonlight, Lunareth is a dreamlike city where architecture shimmers like reflections on water and its streets echo with remnants of the past. Every corner hums with forgotten memories and fragments of lives once lived, offering chances to rediscover stories the world tried to bury. Its inhabitants are specters—former sages, lovers, warriors, and oracles—woven into a tapestry of lunar magic that can reshape the present. It is a realm of melancholic beauty and unfathomable power, where every choice ripples through eternity.",
+      "experiences": [
+        {
+          "name": "Unravel a Memory Echo",
+          "slug": "unravel-memory-echo",
+          "image": "unravel-memory-echo.webp",
+          "description": "Follow ghostly trails of the past to uncover hidden truths and alter your fate."
+        },
+        {
+          "name": "Dance with the Moonshades",
+          "slug": "dance-moonshades",
+          "image": "dance-moonshades.webp",
+          "description": "Join a mystical lunar celebration with ghostly beings that grant boons—or curses."
+        },
+        {
+          "name": "Steal a Star-Touched Relic",
+          "slug": "steal-star-touched-relic",
+          "image": "steal-star-touched-relic.webp",
+          "description": "Infiltrate the palace of moonlight and shadows to claim a magical relic bound to the stars."
+        },
+        {
+          "name": "Consult the Lunar Oracle",
+          "slug": "consult-lunar-oracle",
+          "image": "consult-lunar-oracle.webp",
+          "description": "Seek visions from the enigmatic oracle who speaks in riddles and can rewrite destinies under a full moon."
+        }
+      ]
+    },
+    {
+      "name": "Astharis, the Port of Stars",
+      "slug": "astharis-port-of-stars",
+      "image": "astharis-port-of-stars.webp",
+      "id": 6,
+      "description": "Built upon the cosmic corpse of a stellar leviathan, Astharis rises as an interstellar port where cultures, technologies, and secrets from every corner of the galaxy converge. Its docks float in open void, adorned with quantum-lit masts, and its architecture blends nautical themes with alien elegance. Star corsairs, exoplanet traders, and ancient wayfarers gather here, exchanging everything from volcanic spices to living maps that point toward forgotten civilizations. Astharis is more than a port—it’s a crossroads of destinies.",
+      "experiences": [
+        {
+          "name": "Stellar Navigators' Tournament",
+          "slug": "stellar-navigators-tournament",
+          "image": "stellar-navigators-tournament.webp",
+          "description": "Compete in a solar ship race through asteroid tunnels and electrified nebulas. Only the best pilots survive the final curve: the Spiral of Fire."
+        },
+        {
+          "name": "Mystery of the Living Map",
+          "slug": "mystery-of-the-living-map",
+          "image": "mystery-of-the-living-map.webp",
+          "description": "A map that constantly changes with the stars may lead to a forgotten armory... or a deadly trap. It reveals itself only to those with a true explorer’s spirit."
+        },
+        {
+          "name": "Duel of a Thousand Bolts",
+          "slug": "duel-of-a-thousand-bolts",
+          "image": "duel-of-a-thousand-bolts.webp",
+          "description": "An ancient tradition among space pirates: duels on magnetic platforms with plasma swords and shifting gravity. Honor, reputation, and stellar credits are at stake."
+        },
+        {
+          "name": "The Black Hole Tavern",
+          "slug": "black-hole-tavern",
+          "image": "black-hole-tavern.webp",
+          "description": "A bar floating in a gravitational bubble where time flows differently. Here, intergalactic secrets, rare tech components, and black market favors are traded."
+        }
+      ]
+    }
+  ]
+}
