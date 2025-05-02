@@ -46,4 +46,5 @@ app.get("api/v1/destinations/:slug", async (c) => {
 export default {
   port: 3000,
   fetch: app.fetch,
+  hostname: "0.0.0.0" // lo call ooutside
 };
