@@ -6,7 +6,9 @@ import HeaderSection from './components/sections/HeaderSection.vue';
 <template>
   <HeaderSection />
   <main class="container">
-    <router-view></router-view>
+    <!--NOTE: this approach force rebuild the component when the 'key' change-->
+    <!-- WARNING: This causes the component to be destroyed and redered again -->
+    <router-view :key="$route.path"></router-view>
   </main>
 </template>
 
