@@ -2,8 +2,8 @@
 import sourceData from '@/data/destinations.json'
 import { computed } from 'vue'
 import type { Experience } from '@/types/Destinations'
-import ExperienceCard from '@/components/places/ExperienceCard.vue';
-import GoBack from '@/components/shared/GoBack.vue';
+import ExperienceCard from '@/components/places/ExperienceCard.vue'
+import GoBack from '@/components/shared/GoBack.vue'
 
 // NOTE: the component never know from is the info
 const props = defineProps<{
@@ -17,34 +17,35 @@ const destinationObj = computed(() => {
 const singleName = computed(() => {
   return destinationObj.value?.name.split(' ')[0].split(',')['0']
 })
-
 </script>
 
 <template>
-  <section>
-    <h1 class="destination-title">{{ destinationObj?.name }}</h1>
-    <GoBack />
-    <article class="destination-card">
-      <div class="destination-cover">
-        <img :src="`/images/${destinationObj?.image}`" :alt="destinationObj?.name" />
+  <div>
+    <section>
+      <h1 class="destination-title">{{ destinationObj?.name }}</h1>
+      <GoBack />
+      <article class="destination-card">
+        <div class="destination-cover">
+          <img :src="`/images/${destinationObj?.image}`" :alt="destinationObj?.name" />
+        </div>
+        <p>{{ destinationObj?.description }}</p>
+      </article>
+    </section>
+    <hr />
+    <section class="">
+      <h3>Experiences in {{ destinationObj?.name }}</h3>
+      <div class="gridder" v-if="destinationObj">
+        <router-link
+          v-for="experienceObj in destinationObj.experiences as Experience[]"
+          :key="experienceObj.slug"
+          :to="{ name: 'experience.show', params: { experienceSlug: experienceObj.slug } }"
+        >
+          <ExperienceCard :experience="experienceObj" />
+        </router-link>
       </div>
-      <p>{{ destinationObj?.description }}</p>
-    </article>
-  </section>
-  <hr>
-  <section class="">
-    <h3>Experiences in {{ destinationObj?.name }}</h3>
-    <div class="gridder" v-if="destinationObj">
-      <router-link
-        v-for="experienceObj in destinationObj.experiences as Experience[]"
-        :key="experienceObj.slug"
-        :to="{name: 'experience.show', params:{experienceSlug: experienceObj.slug}}"
-      >
-        <ExperienceCard :experience="experienceObj" />
-      </router-link>
-    </div>
-    <router-view />
-  </section>
+      <router-view />
+    </section>
+  </div>
 </template>
 
 <style scoped>
@@ -62,7 +63,7 @@ const singleName = computed(() => {
     align-items: stretch;
   }
 
-  &>.destination-cover {
+  & > .destination-cover {
     /* height: 100%; */
     align-self: stretch;
   }
@@ -75,7 +76,7 @@ const singleName = computed(() => {
     height: 100%;
   }
 
-  &>p {
+  & > p {
     padding: 1.5rem;
     margin: 0;
     max-height: 100%;

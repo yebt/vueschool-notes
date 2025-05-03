@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { Experience } from '@/types/Destinations';
+import type { Experience } from '@/types/Destinations'
 
 const props = defineProps<{
   experience: Experience
@@ -9,7 +9,7 @@ const { experience } = props
 
 <template>
   <article class="experience-card">
-    <img :src="`/images/experiences/${experience.image}`" :alt="experience.name">
+    <img :src="`/images/experiences/${experience.image}`" :alt="experience.name" />
     <span class="experience-card__name"> {{ experience.name }}</span>
   </article>
 </template>
@@ -20,6 +20,17 @@ const { experience } = props
   padding: 0;
   display: flex;
   overflow: hidden;
+  margin-bottom: 0;
+
+  & > img {
+    transition: transform 0.2s ease-in-out;
+  }
+
+  &:hover {
+    & > img {
+      transform: scale(1.1);
+    }
+  }
 }
 
 .experience-card__name {
