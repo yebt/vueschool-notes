@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import HeaderSection from './components/sections/HeaderSection.vue';
-
 </script>
 
 <template>

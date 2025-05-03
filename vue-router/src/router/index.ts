@@ -1,9 +1,6 @@
-import { createRouter, createWebHistory, createWebHashHistory } from 'vue-router'
-
+import { createRouter, createWebHistory } from 'vue-router'
+import type { RouteLocationNormalized } from 'vue-router'
 import HomeView from '@/views/Home.vue'
-import AboutView from '@/views/About.vue'
-
-import ZephyrosView from '@/views/places/Zephyros.vue'
 
 // NOTE: All sync router will be downloaded when load the application initialy, all is in the same js
 // NOTE: when is async, the js is separared of main js file, the home js is separete of other, etc
@@ -14,7 +11,18 @@ const routes = [
   // { path: '/zephyros-floating-isles', name: 'Zephyros', component: ZephyrosView },
 
   // NOTE: Dynamic routes with parameter
-  { path: '/destination/:id/:slug', name: 'destination.show', component: () => import('@/views/DestinationShow.vue') },
+  {
+    path: '/destination/:id/:slug',
+    name: 'destination.show',
+    component: () => import('@/views/places/DestinationShow.vue'),
+    // props: true // with this flag, the params is passed to the component through component props
+    // props: { someprop: soveval} // Like an obj
+    // props : route =>({someprop: someExpression? someVal: someElseVal}) // like a function
+    // props: route => ({id: parseInt(route.params.id)})
+    props: (route: RouteLocationNormalized) => {
+      return { id: parseInt(route.params.id as string) }
+    },
+  },
 ]
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL), // use a normal router, not #
