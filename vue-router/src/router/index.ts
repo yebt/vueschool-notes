@@ -22,13 +22,19 @@ const routes: RouteRecordRaw[] = [
     props: (route: RouteLocationNormalized) => {
       return { id: parseInt(route.params.id as string) }
     },
+    children: [
+      // Child routes
+      {
+        path: ':experienceSlug',
+        name: 'experience.show',
+        component: () => import('@/views/places/ExperienceShow.vue'),
+        props: (route: RouteLocationNormalized) => ({
+          ...route.params,
+          id: parseInt(route.params.id as string),
+        }), // Pass all params from the route to the component
+      },
+    ],
   },
-  {
-    path: '/destination/:id/:slug/:experienceSlug',
-    name: 'experience.show',
-    component: () => import("@/views/places/ExperienceShow.vue"),
-    props: (route: RouteLocationNormalized) => ({ ...route.params, id: parseInt(route.params.id as string) }) // Pass all params from the route to the component
-  }
 ]
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL), // use a normal router, not #

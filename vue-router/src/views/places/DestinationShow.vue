@@ -41,6 +41,7 @@ const singleName = computed(() => {
         <ExperienceCard :experience="experienceObj" />
       </router-link>
     </div>
+    <router-view />
   </section>
 </template>
 
