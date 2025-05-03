@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import sourceData from '@/data/destinations.json'
 import { computed } from 'vue'
-import ExperienceCard from './ExperienceCard.vue'
 import type { Experience } from '@/types/Destinations'
+import ExperienceCard from '@/components/places/ExperienceCard.vue';
 
 // NOTE: the component never know from is the info
 const props = defineProps<{
@@ -17,15 +17,6 @@ const singleName = computed(()=>{
   return destinationObj.value?.name.split(' ')[0].split(',')['0']
 })
 
-// NOTE: whan call in the server endpoint
-// const destinationObj = ref<Destination | null>(null)
-// const fetchData = async () => {
-//   const response = await fetch(`http://localhost:3000/api/v1/destinations/${route.params.slug}`)
-//   const dataJson: Destination = await response.json() as Destination
-//   destinationObj.value = dataJson
-// }
-//
-// fetchData()
 </script>
 
 <template>
