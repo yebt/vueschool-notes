@@ -2,7 +2,7 @@
 
 <template>
   <span>
-    <button @click="$router.back()" type="button">Go back</button>
+    <button class="outline secondary" @click="$router.back()" type="button">Go back</button>
   </span>
 </template>
 
