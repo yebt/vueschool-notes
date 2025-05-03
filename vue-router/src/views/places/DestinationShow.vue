@@ -3,6 +3,7 @@ import sourceData from '@/data/destinations.json'
 import { computed } from 'vue'
 import type { Experience } from '@/types/Destinations'
 import ExperienceCard from '@/components/places/ExperienceCard.vue';
+import GoBack from '@/components/shared/GoBack.vue';
 
 // NOTE: the component never know from is the info
 const props = defineProps<{
@@ -22,6 +23,7 @@ const singleName = computed(() => {
 <template>
   <section>
     <h1 class="destination-title">{{ destinationObj?.name }}</h1>
+    <GoBack />
     <article class="destination-card">
       <div class="destination-cover">
         <img :src="`/images/${destinationObj?.image}`" :alt="destinationObj?.name" />
