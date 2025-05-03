@@ -13,7 +13,7 @@ const destinationObj = computed(() => {
   return sourceData.destinations.find((desEl) => desEl.id === props.id)
 })
 
-const singleName = computed(()=>{
+const singleName = computed(() => {
   return destinationObj.value?.name.split(' ')[0].split(',')['0']
 })
 
@@ -33,11 +33,13 @@ const singleName = computed(()=>{
   <section class="">
     <h3>Experiences in {{ destinationObj?.name }}</h3>
     <div class="gridder" v-if="destinationObj">
-      <ExperienceCard
+      <router-link
         v-for="experienceObj in destinationObj.experiences as Experience[]"
         :key="experienceObj.slug"
-        :experience="experienceObj"
-      />
+        :to="{name: 'experience.show', params:{experienceSlug: experienceObj.slug}}"
+      >
+        <ExperienceCard :experience="experienceObj" />
+      </router-link>
     </div>
   </section>
 </template>
@@ -57,7 +59,7 @@ const singleName = computed(()=>{
     align-items: stretch;
   }
 
-  & > .destination-cover {
+  &>.destination-cover {
     /* height: 100%; */
     align-self: stretch;
   }
@@ -70,7 +72,7 @@ const singleName = computed(()=>{
     height: 100%;
   }
 
-  & > p {
+  &>p {
     padding: 1.5rem;
     margin: 0;
     max-height: 100%;
