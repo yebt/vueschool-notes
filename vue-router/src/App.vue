@@ -6,7 +6,7 @@ import HeaderSection from './components/sections/HeaderSection.vue';
   <HeaderSection />
   <main class="container">
     <router-view v-slot="{ Component }">
-      <transition name="slide" mode="out-in">
+      <transition name="fade" mode="out-in">
         <component :is="Component" :key="$route.path"></component>
       </transition>
 
@@ -15,18 +15,17 @@ import HeaderSection from './components/sections/HeaderSection.vue';
 </template>
 
 <style scoped lang="scss">
-.slide {
-  $slide-time: 0.5s;
+.fade {
+  $slide-time: 0.3s;
 
   &-enter-active,
   &-leave-active {
-    transition: opacity $slide-time, transform $slide-time;
+    transition: opacity $slide-time;
   }
 
   &-enter-from,
   &-leave-to {
     opacity: 0;
-    transform: translateX(-30%);
   }
 }
 </style>
