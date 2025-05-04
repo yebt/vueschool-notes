@@ -1,6 +1,10 @@
 @use '@picocss/pico/scss/pico' with ($theme-color: 'indigo');
 @use '@picocss/pico/scss/colors' as *;
 
+#app {
+  min-height: 100dvh;
+}
+
 // grid system
 .gridder {
   display: grid;
@@ -21,7 +25,7 @@
   &:hover {
     /* outline: 1px solid $indigo-100; */
     box-shadow: $indigo-800 0px 0px 0px 2px, $indigo-100 0px 0px 0px 4px, rgba(0, 0, 0,
-    0.05) 0px 1px 2px 0px;
+        0.05) 0px 1px 2px 0px;
   }
 
   &>header {
