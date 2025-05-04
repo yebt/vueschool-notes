@@ -5,10 +5,28 @@ import HeaderSection from './components/sections/HeaderSection.vue';
 <template>
   <HeaderSection />
   <main class="container">
-    <!--NOTE: this approach force rebuild the component when the 'key' change-->
-    <!-- WARNING: This causes the component to be destroyed and redered again -->
-    <router-view :key="$route.path"></router-view>
+    <router-view v-slot="{ Component }">
+      <transition name="slide" mode="out-in">
+        <component :is="Component" :key="$route.path"></component>
+      </transition>
+
+    </router-view>
   </main>
 </template>
 
-<style scoped></style>
+<style scoped lang="scss">
+.slide {
+  $slide-time: 0.5s;
+
+  &-enter-active,
+  &-leave-active {
+    transition: opacity $slide-time, transform $slide-time;
+  }
+
+  &-enter-from,
+  &-leave-to {
+    opacity: 0;
+    transform: translateX(-30%);
+  }
+}
+</style>
