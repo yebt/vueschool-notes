@@ -35,6 +35,12 @@ const routes: RouteRecordRaw[] = [
       },
     ],
   },
+  // 404 Error page
+  {
+    path: '/:pathMatch(.*)*',
+    name: 'NotFound',
+    component: ()=> import ("@/views/errors/NotFoundView.vue")
+  }
 ]
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL), // use a normal router, not #
