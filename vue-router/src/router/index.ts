@@ -1,5 +1,10 @@
+import sourceData from '@/data/destinations.json'
 import { createRouter, createWebHistory } from 'vue-router'
-import type { RouteLocationNormalized, RouteRecordRaw } from 'vue-router'
+import type {
+  RouteLocationNormalized,
+  RouteRecordRaw,
+  RouteLocationNormalizedGeneric,
+} from 'vue-router'
 import HomeView from '@/views/Home.vue'
 
 // NOTE: All sync router will be downloaded when load the application initialy, all is in the same js
@@ -22,6 +27,21 @@ const routes: RouteRecordRaw[] = [
     props: (route: RouteLocationNormalized) => {
       return { id: parseInt(route.params.id as string) }
     },
+    // Guard in route
+    beforeEnter(to: RouteLocationNormalizedGeneric, from: RouteLocationNormalizedGeneric) {
+      // check if the destination exist
+      const exists = sourceData.destinations.find(
+        destEl => destEl.id === parseInt(to.params.id as string)
+      )
+      if (!exists) return {
+        name: 'NotFound',
+        // pass the same current page data like url, etc
+        params: { pathMatch: to.path.split('/').slice(1) },
+        query: to.query,
+        hash: to.hash
+      } // redirect to not found
+
+    },
     children: [
       // Child routes
       {
@@ -39,8 +59,8 @@ const routes: RouteRecordRaw[] = [
   {
     path: '/:pathMatch(.*)*',
     name: 'NotFound',
-    component: ()=> import ("@/views/errors/NotFoundView.vue")
-  }
+    component: () => import('@/views/errors/NotFoundView.vue'),
+  },
 ]
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL), // use a normal router, not #
