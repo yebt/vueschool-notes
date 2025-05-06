@@ -14,6 +14,19 @@ const routes: RouteRecordRaw[] = [
   // { path: '/about', name: 'About', component: AboutView },
   { path: '/about', name: 'About', component: () => import('@/views/About.vue') }, // This is downloaded just when is needed
   // { path: '/zephyros-floating-isles', name: 'Zephyros', component: ZephyrosView },
+  {
+    path: '/protected',
+    name: 'protected',
+    component: () => import('@/views/ProtectedView.vue'),
+    meta: {
+      requiresAuth: true,
+    },
+  },
+  {
+    path: '/login',
+    name: 'login',
+    component: () => import('@/views/auth/LoginView.vue'),
+  },
 
   // NOTE: Dynamic routes with parameter
   {
@@ -70,13 +83,29 @@ const router = createRouter({
     // WARNING: this cause go to top inmediatly after change the route
     // return savedPosition || { top: 0 }
     // NOTE: cause I use fade effect to hidden last page, this effect has a duration of 300ms
-    return savedPosition || new Promise(resolve => {
-      setTimeout(() => resolve({
-        top: 0,
-        // behavior: 'smooth' // NOTE: Smooth effect, is to much for me
-      }), 300)
-    })
+    return (
+      savedPosition ||
+      new Promise((resolve) => {
+        setTimeout(
+          () =>
+            resolve({
+              top: 0,
+              // behavior: 'smooth' // NOTE: Smooth effect, is to much for me
+            }),
+          300,
+        )
+      })
+    )
   },
+})
+
+// Navigation Global Guards
+// Cause is called every time when navigate
+router.beforeResolve((to, from) => {
+  if (to.meta.requiresAuth && !window.user) {
+    // need a login
+    return { name: 'login' }
+  }
 })
 
 export default router
