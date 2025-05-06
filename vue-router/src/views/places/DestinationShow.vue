@@ -25,21 +25,18 @@ const singleName = computed(() => {
       <h1 class="destination-title">{{ destinationObj?.name }}</h1>
       <GoBack />
       <article class="destination-card">
-        <div class="destination-cover">
-          <img :src="`/images/${destinationObj?.image}`" :alt="destinationObj?.name" />
-        </div>
+        <!-- <div class="destination-cover"> -->
+        <img :src="`/images/${destinationObj?.image}`" :alt="destinationObj?.name" />
+        <!-- </div> -->
         <p>{{ destinationObj?.description }}</p>
       </article>
     </section>
     <hr />
     <section class="">
-      <h3>Experiences in {{ destinationObj?.name }}</h3>
-      <div class="gridder" v-if="destinationObj">
-        <router-link
-          v-for="experienceObj in destinationObj.experiences as Experience[]"
-          :key="experienceObj.slug"
-          :to="{ name: 'experience.show', params: { experienceSlug: experienceObj.slug } }"
-        >
+      <h3>Experiences in {{ singleName }}</h3>
+      <div class="gridder">
+        <router-link v-for="experienceObj in destinationObj?.experiences as Experience[]" :key="experienceObj.slug"
+          :to="{ name: 'experience.show', params: { experienceSlug: experienceObj.slug } }">
           <ExperienceCard :experience="experienceObj" />
         </router-link>
       </div>
@@ -63,20 +60,21 @@ const singleName = computed(() => {
     align-items: stretch;
   }
 
-  & > .destination-cover {
+  &>.destination-cover {
     /* height: 100%; */
-    align-self: stretch;
+    /* align-self: stretch; */
+    aspect-ratio: 4/3;
   }
 
   & img {
     object-fit: cover;
     border-radius: 8px;
-    /* max-height: 20rem; */
     aspect-ratio: 4/3;
-    height: 100%;
+    height: 20rem;
+
   }
 
-  & > p {
+  &>p {
     padding: 1.5rem;
     margin: 0;
     max-height: 100%;

@@ -5,7 +5,7 @@ const destinations = sourceData.destinations
 </script>
 
 <template>
-  <header class="container">
+  <header class="container-fluid">
     <nav>
       <ul>
         <li>
@@ -22,16 +22,13 @@ const destinations = sourceData.destinations
         <!-- <li><router-link to="/zephyros">Zephyros</router-link></li> -->
         <!-- Dynamic route destination -->
         <li v-for="destiny in destinations" :key="destiny.id">
-          <router-link
-            class="outline"
-            :to="{
-              name: 'destination.show',
-              params: {
-                id: destiny.id,
-                slug: destiny.slug,
-              },
-            }"
-          >
+          <router-link class="outline" :to="{
+            name: 'destination.show',
+            params: {
+              id: destiny.id,
+              slug: destiny.slug,
+            },
+          }">
             {{ destiny.name.split(' ')[0].split(',')[0] }}
           </router-link>
         </li>
@@ -41,15 +38,29 @@ const destinations = sourceData.destinations
 </template>
 
 <style scoped>
+header {
+  position: sticky;
+  top: 0;
+  /* background-color: var(--pico-background-color); */
+  background-color: oklab(from var(--pico-background-color)  l a b/0.7);
+  backdrop-filter: blur(9px);
+  z-index: 1;
+}
+
 nav .router-link-active {
   text-decoration: underline;
 }
+
 nav {
   display: flex;
   flex-wrap: wrap;
+  position: sticky;
+  top: 0;
+
   & h3 {
     margin: 0;
   }
+
   & ul {
     display: flex;
     flex-wrap: wrap;

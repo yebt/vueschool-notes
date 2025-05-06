@@ -19,7 +19,7 @@ const experienceObj = computed(() => {
 </script>
 
 <template>
-  <article v-if="experienceObj" class="">
+  <article v-if="experienceObj" class="experience-card">
     <header>
       <h2>{{ experienceObj.name }}</h2>
     </header>
@@ -30,4 +30,12 @@ const experienceObj = computed(() => {
   </article>
 </template>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.experience-card {
+  aspect-ratio: 4/3;
+}
+
+img {
+  aspect-ratio: 4/3;
+}
+</style>

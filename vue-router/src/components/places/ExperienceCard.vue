@@ -19,15 +19,21 @@ const { experience } = props
   position: relative;
   padding: 0;
   display: flex;
+  flex-direction: column;
   overflow: hidden;
   margin-bottom: 0;
 
-  & > img {
-    transition: transform 0.2s ease-in-out;
+  &>img {
+    transition-property: transform object-fit width height;
+    transition-duration: 0.2s;
+    transition-timing-function: ease-in-out;
+    /* transition: transform 0.2s ease-in-out; */
+    aspect-ratio: 5/3;
+    object-fit: cover;
   }
 
   &:hover {
-    & > img {
+    &>img {
       transform: scale(1.1);
     }
   }

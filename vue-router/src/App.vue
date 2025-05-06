@@ -5,11 +5,12 @@ import HeaderSection from './components/sections/HeaderSection.vue';
 <template>
   <HeaderSection />
   <main class="container">
+
+    <!-- <router-view :key="$route.path"></router-view> -->
     <router-view v-slot="{ Component }">
       <transition name="fade" mode="out-in">
         <component :is="Component" :key="$route.path"></component>
       </transition>
-
     </router-view>
   </main>
 </template>
