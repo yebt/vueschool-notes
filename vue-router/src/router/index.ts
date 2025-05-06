@@ -31,16 +31,16 @@ const routes: RouteRecordRaw[] = [
     beforeEnter(to: RouteLocationNormalizedGeneric, from: RouteLocationNormalizedGeneric) {
       // check if the destination exist
       const exists = sourceData.destinations.find(
-        destEl => destEl.id === parseInt(to.params.id as string)
+        (destEl) => destEl.id === parseInt(to.params.id as string),
       )
-      if (!exists) return {
-        name: 'NotFound',
-        // pass the same current page data like url, etc
-        params: { pathMatch: to.path.split('/').slice(1) },
-        query: to.query,
-        hash: to.hash
-      } // redirect to not found
-
+      if (!exists)
+        return {
+          name: 'NotFound',
+          // pass the same current page data like url, etc
+          params: { pathMatch: to.path.split('/').slice(1) },
+          query: to.query,
+          hash: to.hash,
+        } // redirect to not found
     },
     children: [
       // Child routes
@@ -66,6 +66,17 @@ const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL), // use a normal router, not #
   // history: createWebHashHistory(import.meta.env.BASE_URL),// use a /#/... like a base
   routes,
+  scrollBehavior: (to, from, savedPosition) => {
+    // WARNING: this cause go to top inmediatly after change the route
+    // return savedPosition || { top: 0 }
+    // NOTE: cause I use fade effect to hidden last page, this effect has a duration of 300ms
+    return savedPosition || new Promise(resolve => {
+      setTimeout(() => resolve({
+        top: 0,
+        // behavior: 'smooth' // NOTE: Smooth effect, is to much for me
+      }), 300)
+    })
+  },
 })
 
 export default router

@@ -8,6 +8,7 @@ import HeaderSection from './components/sections/HeaderSection.vue';
 
     <!-- <router-view :key="$route.path"></router-view> -->
     <router-view v-slot="{ Component }">
+      <!-- The mode is when apply the effect -->
       <transition name="fade" mode="out-in">
         <component :is="Component" :key="$route.path"></component>
       </transition>
