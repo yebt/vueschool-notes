@@ -1,8 +1,9 @@
 <script setup lang="ts">
 import { ref } from 'vue'
-import { useRouter } from 'vue-router'
+import { useRoute, useRouter } from 'vue-router'
 
 const router = useRouter()
+const route = useRoute()
 
 const username = ref('')
 const password = ref('')
@@ -11,8 +12,10 @@ const login = () => {
   // Login using API
   //...
   // NOTE:Using an store here
-  window.user = username.value
-  router.push({ name: 'protected' })
+  globalThis.user = username.value
+  const redirectPath = route.query.redirect as string
+  const redirectDest = redirectPath ?? { name: 'protected' }
+  router.push(redirectDest)
 }
 </script>
 <template>

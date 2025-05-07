@@ -1,12 +1,11 @@
 <script setup lang="ts">
 import { useRouter } from 'vue-router'
 
-
 const router = useRouter()
-const username = window.user ?? "unknow"
-const logout = ()=>{
-  window.user = null
-  router.push({name: 'Home'})
+const username = window.user ?? 'unknow'
+const logout = () => {
+  globalThis.user = null
+  router.push({ name: 'Home' })
 }
 </script>
 
@@ -18,7 +17,9 @@ const logout = ()=>{
         <p>This is a protected route</p>
       </hgroup>
       <button @click="logout" class="secondary">Log out</button>
+      <router-link :to="{ name: 'invoices' }">
+        <button class="contrast"> Invoices </button>
+      </router-link>
     </header>
   </section>
-
 </template>

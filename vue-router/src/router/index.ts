@@ -27,6 +27,14 @@ const routes: RouteRecordRaw[] = [
     name: 'login',
     component: () => import('@/views/auth/LoginView.vue'),
   },
+  {
+    path: '/invoices',
+    name: 'invoices',
+    component: () => import('@/views/invoices/IndexView.vue'),
+    meta: {
+      requiresAuth: true,
+    },
+  },
 
   // NOTE: Dynamic routes with parameter
   {
@@ -104,7 +112,7 @@ const router = createRouter({
 router.beforeResolve((to, from) => {
   if (to.meta.requiresAuth && !window.user) {
     // need a login
-    return { name: 'login' }
+    return { name: 'login', query: { redirect: to.fullPath } }
   }
 })
 
