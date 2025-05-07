@@ -10,7 +10,14 @@ import HomeView from '@/views/Home.vue'
 // NOTE: All sync router will be downloaded when load the application initialy, all is in the same js
 // NOTE: when is async, the js is separared of main js file, the home js is separete of other, etc
 const routes: RouteRecordRaw[] = [
-  { path: '/', name: 'Home', component: HomeView },
+  // NOTE: when use aliases, load the same route of the path, but, not remove the /home like
+  // redirect
+  { path: '/', name: 'Home', component: HomeView, alias: '/home' },
+  // NOTE: alternative redirect if not use aliases
+  // { path: '/home', redirect: '/' },
+  // { path: '/home', redirect: {name: 'Home'} },
+  // { path: '/home', redirect: to=> '/'},
+
   // { path: '/about', name: 'About', component: AboutView },
   { path: '/about', name: 'About', component: () => import('@/views/About.vue') }, // This is downloaded just when is needed
   // { path: '/zephyros-floating-isles', name: 'Zephyros', component: ZephyrosView },
