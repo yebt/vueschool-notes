@@ -50,6 +50,11 @@ const routes: RouteRecordRaw[] = [
     },
   },
 
+  {
+    path: "/example/:id(\\d+)+", // this make that id is a digit and required the id
+    // NOTE: use regural expression
+    component: () => import('@/views/auth/LoginView.vue'),
+  },
   // NOTE: Dynamic routes with parameter
   {
     path: '/destination/:id/:slug',
