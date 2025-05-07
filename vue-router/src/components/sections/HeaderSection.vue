@@ -10,20 +10,21 @@ const destinations = sourceData.destinations
       <ul>
         <li>
           <!-- Home -->
-          <router-link to="/">
+          <AppLink to="/">
             <h3>Vue Router</h3>
-          </router-link>
+          </AppLink>
         </li>
         <!-- About -->
-        <li><router-link to="/about">About</router-link></li>
-        <li><router-link :to="{ name: 'protected' }">Dashboard</router-link></li>
+        <li><AppLink to="/about">About</AppLink></li>
+        <li><AppLink :to="{ name: 'protected' }">Dashboard</AppLink></li>
+        <li><AppLink to="https://github.com/yebt">GitHub</AppLink></li>
       </ul>
       <!---->
       <ul class="destinations-links">
-        <!-- <li><router-link to="/zephyros">Zephyros</router-link></li> -->
+        <!-- <li><AppLink to="/zephyros">Zephyros</AppLink></li> -->
         <!-- Dynamic route destination -->
         <li v-for="destiny in destinations" :key="destiny.id">
-          <router-link class="outline" :to="{
+          <AppLink class="outline" :to="{
             name: 'destination.show',
             params: {
               id: destiny.id,
@@ -31,7 +32,7 @@ const destinations = sourceData.destinations
             },
           }">
             {{ destiny.name.split(' ')[0].split(',')[0] }}
-          </router-link>
+          </AppLink>
         </li>
       </ul>
     </nav>
@@ -49,7 +50,7 @@ header {
 }
 
 
-nav .router-link-active {
+nav .AppLink-active {
   text-decoration: underline;
 }
 
