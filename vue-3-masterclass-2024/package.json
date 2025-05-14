@@ -22,6 +22,7 @@
     "db:reset": "bunx supabase@beta db reset --linked"
   },
   "dependencies": {
+    "@faker-js/faker": "^9.7.0",
     "@supabase/supabase-js": "^2.49.4",
     "pinia": "^3.0.1",
     "supabase": "^2.22.12",
