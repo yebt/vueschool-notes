@@ -1,21 +1,15 @@
 import { fakerES_MX as faker } from '@faker-js/faker'
 import { createClient } from '@supabase/supabase-js'
-import type { Project  } from '../src/types/Project'
+import type { ProjectMin } from '../src/types/Project'
 
 const supabase = createClient(
   process.env.VITE_SUPABASE_URL ?? '',
   process.env.SERVICE_ROLE_KEY ?? '', // Use a service key cause the supabase key because row level security add a constrains to security
 )
 
-// interface Project {
-//   name: string
-//   slug: string
-//   status: 'in-progress' | 'completed'
-//   collaborators: number[]
-// }
 
 const seedProjects = async (numEntries = 1) => {
-  const projectsToInsert: Project[] = []
+  const projectsToInsert: ProjectMin[] = []
   for (let i = 0; i < numEntries; i++) {
     const name = faker.lorem.words(3)
     projectsToInsert.push({
