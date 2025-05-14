@@ -1,10 +1,10 @@
 <script setup lang="ts">
 
 import { supabase } from '@/lib/supabaseClient'
-import type { Project } from '@/types/Project';
 import { ref } from 'vue';
+import type { Tables } from '@database/types'
 
-const projectsList = ref<Project[] | null>(null)
+const projectsList = ref<Tables<'projects'>[] | null>(null)
 
   // NOTE: IIFE: Inmediatly Invoke Function Expression
   ; (async () => {
