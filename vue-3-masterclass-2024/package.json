@@ -15,7 +15,8 @@
     "lint": "run-s lint:*",
     "format": "prettier --write src/",
     "supabase:init": "supabase init",
-    "supabase:login": "supabase login"
+    "supabase:login": "supabase login",
+    "supabase:link": "bun supabase link --project-ref $(bun --print import.meta.env.VITE_SUPABASE_PROJECT_ID)"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.49.4",
