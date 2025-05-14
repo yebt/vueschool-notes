@@ -6,18 +6,28 @@ const supabase = createClient(
   process.env.SERVICE_ROLE_KEY ?? '', // Use a service key cause the supabase key because row level security add a constrains to security
 )
 
-const seedProjects = async () => {
-  const name = faker.lorem.words(3)
-  const result = await supabase
-    .from('projects')
-    .insert({
+interface Project {
+  name: string
+  slug: string
+  status: 'in-progress' | 'completed'
+  collaborators: number[]
+}
+
+const seedProjects = async (numEntries = 1) => {
+  const projectsToInsert: Project[] = []
+  for (let i = 0; i < numEntries; i++) {
+    const name = faker.lorem.words(3)
+    projectsToInsert.push({
       name: name,
       slug: name.replaceAll(/ /g, '-'),
       status: faker.helpers.arrayElement(['in-progress', 'completed']),
-      collaborators: faker.helpers.arrayElements([1,2,3,4])
+      collaborators: faker.helpers.arrayElements([1, 2, 3, 4]),
     })
-  console.log(result);
+  }
 
+  const result = await supabase.from('projects').insert(projectsToInsert)
+
+  console.log(result)
 }
 
-await seedProjects()
+await seedProjects(10)
