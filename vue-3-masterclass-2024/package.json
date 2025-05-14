@@ -21,7 +21,7 @@
     "db:reset_": "supabase db reset --linked",
     "db:reset": "bunx supabase@beta db reset --linked",
     "db:seed": "bun database/seed.ts",
-    "supabase:types": "bunx supabase gen types typescript --project-id $(bun --print import.meta.env.VITE_SUPABASE_PROJECT_ID) --schema public > src/types/database.types.ts"
+    "supabase:types": "bunx supabase gen types typescript --project-id $(bun --print import.meta.env.VITE_SUPABASE_PROJECT_ID) --schema public > database/types.ts"
   },
   "dependencies": {
     "@faker-js/faker": "^9.7.0",
