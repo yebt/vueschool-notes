@@ -23,6 +23,7 @@ const tasksList = ref<Tables<'tasks'>[] | null>(null)
 <template>
   <div>
     <h1>Tasks list</h1>
+    <RouterLink to="/">Go to Home</RouterLink>
     <ul v-if="tasksList && tasksList.length > 0">
       <li v-for="(tasksEl) in tasksList" :key="tasksEl.id">
         <b> TSK: </b> <i>{{ tasksEl.name }}</i>
