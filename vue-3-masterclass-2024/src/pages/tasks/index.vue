@@ -16,7 +16,7 @@ const tasksList = ref<Tables<'tasks'>[] | null>(null)
 
     tasksList.value = data ?? []
 
-    console.log('projects:', tasksList.value)
+    // console.log('projects:', tasksList.value)
   })()
 </script>
 
