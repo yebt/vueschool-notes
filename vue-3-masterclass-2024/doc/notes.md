@@ -7,3 +7,11 @@ bundle, this extra weight is added to first load
 
 The regular icons components for vue is not ready to use in server side
 rendering, is ok use the webcomponent version 
+
+## Roting
+
+```html
+activeClass=""
+exactActiveClass=""
+
+```
