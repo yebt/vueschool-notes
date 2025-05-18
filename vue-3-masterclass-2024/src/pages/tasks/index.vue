@@ -1,36 +1,69 @@
 <script setup lang="ts">
-import { supabase } from '@/lib/supabaseClient';
+// import { supabase } from '@/lib/supabaseClient';
+import DataTable from '@/components/ui/data-table/DataTable.vue';
 import type { Tables } from '@database/types';
-import { ref } from 'vue';
+import type { ColumnDef } from '@tanstack/vue-table';
+import { h, ref } from 'vue';
 
 
-const tasksList = ref<Tables<'tasks'>[] | null>(null)
+// const tasksList = ref<Tables<'tasks'>[] | null>(null)
+//
+// // NOTE: IIFE: Inmediatly Invoke Function Expression
+// ; (async () => {
+//   const { data, error } = await supabase
+//     .from('tasks')
+//     .select()
+//
+//   if (error) console.log('ERROR', error)
+//
+//   tasksList.value = data ?? []
+//
+//   // console.log('projects:', tasksList.value)
+// })()
 
-  // NOTE: IIFE: Inmediatly Invoke Function Expression
-  ; (async () => {
-    const { data, error } = await supabase
-      .from('tasks')
-      .select()
+// DATA ____________________________________________________________
+interface Payment {
+  id: string
+  amount: number
+  status: 'pending' | 'processing' | 'success' | 'failed'
+  email: string
+}
 
-    if (error) console.log('ERROR', error)
+const payments: Payment[] = [
+  {
+    id: '728ed52f',
+    amount: 100,
+    status: 'pending',
+    email: 'm@example.com',
+  },
+  {
+    id: '489e1d42',
+    amount: 125,
+    status: 'processing',
+    email: 'example@gmail.com',
+  },
+  // ...
+]
+// Columns Definition ____________________________________________________________
+const columns: ColumnDef<Payment>[] = [
+  {
+    accessorKey: 'amount',
+    header: () => h('div', { class: 'text-right' }, 'Amount'),
+    cell: ({ row }) => {
+      const amount = Number.parseFloat(row.getValue('amount'))
+      const formatted = new Intl.NumberFormat('en-US', {
+        style: 'currency',
+        currency: 'USD',
+      }).format(amount)
 
-    tasksList.value = data ?? []
+      return h('div', { class: 'text-right font-medium' }, formatted)
+    },
+  }
+]
 
-    // console.log('projects:', tasksList.value)
-  })()
+
 </script>
 
 <template>
-  <div>
-    <h1>Tasks list</h1>
-    <RouterLink to="/">Go to Home</RouterLink>
-    <ul v-if="tasksList && tasksList.length > 0">
-      <li v-for="(tasksEl) in tasksList" :key="tasksEl.id">
-        <b> TSK: </b> <i>{{ tasksEl.name }}</i>
-      </li>
-    </ul>
-    <section v-else>
-      -- No tasks --
-    </section>
-  </div>
+  <DataTable :columns="columns" :data="payments" />
 </template>
