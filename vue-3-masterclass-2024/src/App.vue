@@ -19,14 +19,8 @@ import { Avatar, AvatarFallback } from '@/components/ui/avatar'
 <template>
   <header>
     <nav class="h-16 border-b bg-muted/40 flex justify-between px-6 items-center">
-      <form class="w-full max-w-96">
-        <!-- <input type="text" class="w-full pl-8 bg-background" placeholder="Search ..."> -->
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-          <g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
-            <path d="m21 21l-4.34-4.34" />
-            <circle cx="11" cy="11" r="8" />
-          </g>
-        </svg>
+      <form class="relative w-full max-w-96 h-fit">
+        <iconify-icon class="absolute top-1/2  -translate-y-1/2  left-2.5 text-muted-foreground" icon="lucide:search" ></iconify-icon>
         <Input type="text" class="w-full pl-8 bg-background" placeholder="Search ..."></Input>
       </form>
       <DropdownMenu>
