@@ -1,13 +1,50 @@
 <script setup lang="ts">
+import Input from '@/components/ui/input/Input.vue'
+
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+
+} from '@/components/ui/dropdown-menu'
+
+import { Avatar, AvatarFallback } from '@/components/ui/avatar'
+
+
 </script>
 
 <template>
   <header>
     <nav class="h-16 border-b bg-muted/40 flex justify-between px-6 items-center">
-      <form class="w-full max-w-96" >
-        <input type="text" class="w-full pl-8 bg-background" placeholder="Search ...">
+      <form class="w-full max-w-96">
+        <!-- <input type="text" class="w-full pl-8 bg-background" placeholder="Search ..."> -->
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+          <g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
+            <path d="m21 21l-4.34-4.34" />
+            <circle cx="11" cy="11" r="8" />
+          </g>
+        </svg>
+        <Input type="text" class="w-full pl-8 bg-background" placeholder="Search ..."></Input>
       </form>
-      <div class="w-8 h-8 rounded-full bg-white"></div>
+      <DropdownMenu>
+        <DropdownMenuTrigger>
+          <Avatar>
+            <!-- <AvatarImage src="https://github.com/unovue.png" alt="@unovue" /> -->
+            <AvatarFallback>CN</AvatarFallback>
+          </Avatar>
+        </DropdownMenuTrigger>
+        <DropdownMenuContent align="start">
+          <DropdownMenuLabel>My Account</DropdownMenuLabel>
+          <DropdownMenuSeparator />
+          <DropdownMenuItem>Profile</DropdownMenuItem>
+          <DropdownMenuItem>Billing</DropdownMenuItem>
+          <DropdownMenuItem>Team</DropdownMenuItem>
+          <DropdownMenuItem>Subscription</DropdownMenuItem>
+        </DropdownMenuContent>
+      </DropdownMenu>
     </nav>
   </header>
   <main>
