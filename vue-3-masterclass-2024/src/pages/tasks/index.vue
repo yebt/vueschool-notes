@@ -1,69 +1,74 @@
 <script setup lang="ts">
-// import { supabase } from '@/lib/supabaseClient';
+import { supabase } from '@/lib/supabaseClient';
 import DataTable from '@/components/ui/data-table/DataTable.vue';
 import type { Tables } from '@database/types';
 import type { ColumnDef } from '@tanstack/vue-table';
 import { h, ref } from 'vue';
 
 
-// const tasksList = ref<Tables<'tasks'>[] | null>(null)
-//
-// // NOTE: IIFE: Inmediatly Invoke Function Expression
-// ; (async () => {
-//   const { data, error } = await supabase
-//     .from('tasks')
-//     .select()
-//
-//   if (error) console.log('ERROR', error)
-//
-//   tasksList.value = data ?? []
-//
-//   // console.log('projects:', tasksList.value)
-// })()
+const tasksList = ref<Tables<'tasks'>[] | null>(null)
+
+  // NOTE: IIFE: Inmediatly Invoke Function Expression
+  ; (async () => {
+    const { data, error } = await supabase
+      .from('tasks')
+      .select()
+
+    if (error) console.log('ERROR', error)
+
+    tasksList.value = data ?? []
+
+    // console.log('projects:', tasksList.value)
+  })()
 
 // DATA ____________________________________________________________
-interface Payment {
-  id: string
-  amount: number
-  status: 'pending' | 'processing' | 'success' | 'failed'
-  email: string
-}
 
-const payments: Payment[] = [
-  {
-    id: '728ed52f',
-    amount: 100,
-    status: 'pending',
-    email: 'm@example.com',
-  },
-  {
-    id: '489e1d42',
-    amount: 125,
-    status: 'processing',
-    email: 'example@gmail.com',
-  },
-  // ...
-]
 // Columns Definition ____________________________________________________________
-const columns: ColumnDef<Payment>[] = [
+const columns: ColumnDef<Tables<'tasks'>>[] = [
   {
-    accessorKey: 'amount',
-    header: () => h('div', { class: 'text-right' }, 'Amount'),
+    accessorKey: 'name',
+    header: () => h('div', { class: 'text-left' }, 'Name'),
     cell: ({ row }) => {
-      const amount = Number.parseFloat(row.getValue('amount'))
-      const formatted = new Intl.NumberFormat('en-US', {
-        style: 'currency',
-        currency: 'USD',
-      }).format(amount)
-
-      return h('div', { class: 'text-right font-medium' }, formatted)
+      return h('div', { class: 'text-left font-medium' }, row.getValue('name'))
     },
-  }
-]
+  },
+  {
+    accessorKey: 'status',
+    header: () => h('div', { class: 'text-left' }, 'Status'),
+    cell: ({ row }) => {
+      return h('div', { class: 'text-left font-medium' }, row.getValue('status'))
+    },
+  },
+  {
+    accessorKey: 'due_date',
+    header: () => h('div', { class: 'text-left' }, 'Due Date'),
+    cell: ({ row }) => {
+      return h('div', { class: 'text-left font-medium' }, row.getValue('due_date'))
+    },
+  },
+  {
+    accessorKey: 'project_id',
+    header: () => h('div', { class: 'text-left' }, 'Project'),
+    cell: ({ row }) => {
+      return h('div', { class: 'text-left font-medium' }, row.getValue('project_id'))
+    },
+  },
+  {
+    accessorKey: 'collaborators',
+    header: () => h('div', { class: 'text-left' }, 'Collaborators'),
+    cell: ({ row }) => {
+      return h(
+        'div',
+        { class: 'text-left font-medium' },
+        JSON.stringify( row.getValue('collaborators'))
+      )
+    },
+  },
 
+]
 
 </script>
 
 <template>
-  <DataTable :columns="columns" :data="payments" />
+  <DataTable v-if="tasksList" :columns="columns" :data="tasksList" />
 </template>
