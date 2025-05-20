@@ -5,6 +5,7 @@ import { h, ref } from 'vue';
 import type { Tables } from '@database/types'
 import type { ColumnDef } from '@tanstack/vue-table';
 import DataTable from '@/components/ui/data-table/DataTable.vue';
+import { RouterLink } from 'vue-router';
 
 const projectsList = ref<Tables<'projects'>[] | null>(null)
 
@@ -21,23 +22,17 @@ const projectsList = ref<Tables<'projects'>[] | null>(null)
   })()
 
 const columns: ColumnDef<Tables<'projects'>>[] = [
-
-  // collaborators: string[];
-  // created_at: string;
-  // id: number;
-  // name: string;
-  // slug: string;
-  // status: Database["public"]["Enums"]["current_status"];
-  // updated_at: string;
-
   {
     accessorKey: 'name',
     header: () => h('div', { class: 'text-left' }, 'Name'),
     cell: ({ row }) => {
       return h(
-        'div',
-        { class: 'text-left font-medium' },
-        row.getValue('name')
+        RouterLink,
+        {
+          to: `/projects/${row.original.slug}`,
+          class: 'text-left font-medium hover:bg-muted block w-full'
+        },
+        () => row.getValue('name')
       )
     },
   },
