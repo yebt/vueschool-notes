@@ -1,10 +1,11 @@
-<script setup lang="ts">
-</script>
+<script setup lang="ts"></script>
 <template>
   <nav class="h-16 border-b bg-muted/40 flex gap-2 justify-between px-6 items-center">
     <form class="relative h-fit w-full max-w-96">
-      <iconify-icon class="absolute top-1/2 -translate-y-1/2 left-2.5 text-muted-foreground"
-        icon="lucide:search"></iconify-icon>
+      <iconify-icon
+        class="absolute top-1/2 -translate-y-1/2 left-2.5 text-muted-foreground"
+        icon="lucide:search"
+      ></iconify-icon>
       <Input class="w-full pl-8 bg-background" type="text" placeholder="Search ..." />
     </form>
     <DropdownMenu>
