@@ -60,11 +60,10 @@ const columns: ColumnDef<Tables<'tasks'>>[] = [
       return h(
         'div',
         { class: 'text-left font-medium' },
-        JSON.stringify( row.getValue('collaborators'))
+        JSON.stringify(row.getValue('collaborators'))
       )
     },
   },
-
 ]
 
 </script>

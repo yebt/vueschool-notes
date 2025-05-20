@@ -1,8 +1,10 @@
 <script setup lang="ts">
 
 import { supabase } from '@/lib/supabaseClient'
-import { ref } from 'vue';
+import { h, ref } from 'vue';
 import type { Tables } from '@database/types'
+import type { ColumnDef } from '@tanstack/vue-table';
+import DataTable from '@/components/ui/data-table/DataTable.vue';
 
 const projectsList = ref<Tables<'projects'>[] | null>(null)
 
@@ -16,23 +18,67 @@ const projectsList = ref<Tables<'projects'>[] | null>(null)
 
     projectsList.value = data ?? []
 
-    // console.log('projects:', projectsList.value)
   })()
+
+const columns: ColumnDef<Tables<'projects'>>[] = [
+
+  // collaborators: string[];
+  // created_at: string;
+  // id: number;
+  // name: string;
+  // slug: string;
+  // status: Database["public"]["Enums"]["current_status"];
+  // updated_at: string;
+
+  {
+    accessorKey: 'name',
+    header: () => h('div', { class: 'text-left' }, 'Name'),
+    cell: ({ row }) => {
+      return h(
+        'div',
+        { class: 'text-left font-medium' },
+        row.getValue('name')
+      )
+    },
+  },
+  {
+    accessorKey: 'slug',
+    header: () => h('div', { class: 'text-left' }, 'Slug'),
+    cell: ({ row }) => {
+      return h(
+        'div',
+        { class: 'text-left font-medium' },
+        row.getValue('slug')
+      )
+    },
+  },
+  {
+    accessorKey: 'status',
+    header: () => h('div', { class: 'text-left' }, 'Status'),
+    cell: ({ row }) => {
+      return h(
+        'div',
+        { class: 'text-left font-medium' },
+        row.getValue('status')
+      )
+    },
+  },
+
+  {
+    accessorKey: 'collaborators',
+    header: () => h('div', { class: 'text-left' }, 'Collaborators'),
+    cell: ({ row }) => {
+      return h(
+        'div',
+        { class: 'text-left font-medium' },
+        JSON.stringify(row.getValue('collaborators'))
+      )
+    },
+  }
+]
 
 </script>
 
 <template>
-  <div>
-    <h1>Projects view</h1>
-    <RouterLink to="/">Go to Home</RouterLink>
-
-    <ul v-if="projectsList && projectsList.length > 0">
-      <li v-for="(project) in projectsList" :key="project.id">
-        {{ project.name }}
-      </li>
-    </ul>
-    <section v-else>
-      -- No results --
-    </section>
-  </div>
+  <DataTable v-if="projectsList" :columns="columns" :data="projectsList" />
 </template>
