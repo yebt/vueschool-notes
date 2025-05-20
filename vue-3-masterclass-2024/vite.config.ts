@@ -7,6 +7,7 @@ import vueRouter from 'unplugin-vue-router/vite'
 import tailwindcss from '@tailwindcss/vite'
 import { VueRouterAutoImports } from 'unplugin-vue-router'
 import AutoIport from 'unplugin-auto-import/vite'
+import Components from 'unplugin-vue-components/vite'
 
 // https://vite.dev/config/
 export default defineConfig({
@@ -31,6 +32,13 @@ export default defineConfig({
       ],
       dts: true,
       viteOptimizeDeps: true,
+    }),
+    Components({
+      dts: true, // enabled by default if `typescript` is installed
+      // types: [{
+      //   from: 'vue-router',
+      //   names: ['RouterLink', 'RouterView'],
+      // }],
     }),
     tailwindcss(),
     vueRouter(),

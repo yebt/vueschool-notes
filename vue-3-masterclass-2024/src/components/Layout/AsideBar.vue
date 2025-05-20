@@ -1,7 +1,5 @@
 <script setup lang="ts">
 import type { LinkProp } from '@/types/Generals/Aside';
-import AsideBarLinks from '@/components/Layout/AsideBarLinks.vue';
-import { Button } from '@/components/ui/button';
 
 const links: LinkProp[] = [
   {

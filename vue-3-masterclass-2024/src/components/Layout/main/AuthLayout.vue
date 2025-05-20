@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import AsideBar from '@/components/Layout/AsideBar.vue';
-import TopNavbar from '@/components/Layout/TopNavbar.vue';
 </script>
 
 <template>
