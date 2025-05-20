@@ -7,18 +7,16 @@ import { RouterLink } from 'vue-router';
 
 const tasksList = ref<Tables<'tasks'>[] | null>(null)
 
-  // NOTE: IIFE: Inmediatly Invoke Function Expression
-  ; (async () => {
-    const { data, error } = await supabase
-      .from('tasks')
-      .select()
+const getTasks = async () => {
+  const { data, error } = await supabase
+    .from('tasks')
+    .select()
 
-    if (error) console.log('ERROR', error)
+  if (error) console.log('ERROR', error)
+  tasksList.value = data ?? []
+}
 
-    tasksList.value = data ?? []
-
-    // console.log('projects:', tasksList.value)
-  })()
+await getTasks()
 
 // DATA ____________________________________________________________
 

@@ -15,3 +15,14 @@ activeClass=""
 exactActiveClass=""
 
 ```
+
+## Suspense
+
+```vue
+<Suspense v-if="Component" :timeout="0">
+```
+
+When exist an asynchronously dependency, this component not render the component
+until the data is ok, the promise is resolved.
+This wait a timeout to render the fallback
+if the timeout is 0, always show the fallback slot
