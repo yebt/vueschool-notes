@@ -28,10 +28,15 @@ export default defineConfig({
         'vue',
         VueRouterAutoImports,
         // custom
-        {}
+        {
+          'pinia': ['defineStore', 'storeToRefs', 'acceptHMRUpdate']
+        }
       ],
       dts: true,
       viteOptimizeDeps: true,
+      dirs: [
+        'src/stores'
+      ]
     }),
     Components({
       dts: true, // enabled by default if `typescript` is installed

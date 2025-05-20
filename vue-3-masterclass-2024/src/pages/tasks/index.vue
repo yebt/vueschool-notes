@@ -1,16 +1,15 @@
 <script setup lang="ts">
-import { supabase } from '@/lib/supabaseClient';
-import type { Tables } from '@database/types';
-import type { ColumnDef } from '@tanstack/vue-table';
-import { RouterLink } from 'vue-router';
+import { supabase } from '@/lib/supabaseClient'
+import type { Tables } from '@database/types'
+import type { ColumnDef } from '@tanstack/vue-table'
+import { RouterLink } from 'vue-router'
 
+usePageStore().pageData.title = 'Tasks page'
 
 const tasksList = ref<Tables<'tasks'>[] | null>(null)
 
 const getTasks = async () => {
-  const { data, error } = await supabase
-    .from('tasks')
-    .select()
+  const { data, error } = await supabase.from('tasks').select()
 
   if (error) console.log('ERROR', error)
   tasksList.value = data ?? []
@@ -30,9 +29,9 @@ const columns: ColumnDef<Tables<'tasks'>>[] = [
         RouterLink,
         {
           to: `/tasks/${row.original.id}`,
-          class: 'text-left font-medium hover:bg-muted block w-full'
+          class: 'text-left font-medium hover:bg-muted block w-full',
         },
-        () => row.getValue('name')
+        () => row.getValue('name'),
       )
     },
   },
@@ -64,12 +63,11 @@ const columns: ColumnDef<Tables<'tasks'>>[] = [
       return h(
         'div',
         { class: 'text-left font-medium' },
-        JSON.stringify(row.getValue('collaborators'))
+        JSON.stringify(row.getValue('collaborators')),
       )
     },
   },
 ]
-
 </script>
 
 <template>

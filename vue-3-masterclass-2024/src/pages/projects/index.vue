@@ -1,16 +1,15 @@
 <script setup lang="ts">
-
 import { supabase } from '@/lib/supabaseClient'
 import type { Tables } from '@database/types'
-import type { ColumnDef } from '@tanstack/vue-table';
-import { RouterLink } from 'vue-router';
+import type { ColumnDef } from '@tanstack/vue-table'
+import { RouterLink } from 'vue-router'
+
+usePageStore().pageData.title = 'Projects page'
 
 const projectsList = ref<Tables<'projects'>[] | null>(null)
 
 const getProjects = async () => {
-  const { data, error } = await supabase
-    .from('projects')
-    .select()
+  const { data, error } = await supabase.from('projects').select()
 
   if (error) console.log('ERROR', error)
   projectsList.value = data ?? []
@@ -26,9 +25,9 @@ const columns: ColumnDef<Tables<'projects'>>[] = [
         RouterLink,
         {
           to: `/projects/${row.original.slug}`,
-          class: 'text-left font-medium hover:bg-muted block w-full'
+          class: 'text-left font-medium hover:bg-muted block w-full',
         },
-        () => row.getValue('name')
+        () => row.getValue('name'),
       )
     },
   },
@@ -36,22 +35,14 @@ const columns: ColumnDef<Tables<'projects'>>[] = [
     accessorKey: 'slug',
     header: () => h('div', { class: 'text-left' }, 'Slug'),
     cell: ({ row }) => {
-      return h(
-        'div',
-        { class: 'text-left font-medium' },
-        row.getValue('slug')
-      )
+      return h('div', { class: 'text-left font-medium' }, row.getValue('slug'))
     },
   },
   {
     accessorKey: 'status',
     header: () => h('div', { class: 'text-left' }, 'Status'),
     cell: ({ row }) => {
-      return h(
-        'div',
-        { class: 'text-left font-medium' },
-        row.getValue('status')
-      )
+      return h('div', { class: 'text-left font-medium' }, row.getValue('status'))
     },
   },
 
@@ -62,12 +53,11 @@ const columns: ColumnDef<Tables<'projects'>>[] = [
       return h(
         'div',
         { class: 'text-left font-medium' },
-        JSON.stringify(row.getValue('collaborators'))
+        JSON.stringify(row.getValue('collaborators')),
       )
     },
-  }
+  },
 ]
-
 </script>
 
 <template>
