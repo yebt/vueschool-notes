@@ -1,5 +1,7 @@
 <script setup lang="ts">
-const route = useRoute()
+import type { RouteLocationNormalizedLoaded } from 'vue-router';
+
+const route = useRoute() as RouteLocationNormalizedLoaded<'/projects/[slug]'>
 
 usePageStore().pageData.title = `Project ${route.params?.slug}`
 </script>
