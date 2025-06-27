@@ -21,6 +21,9 @@ const columns: ColumnDef<Tables<'projects'>>[] = [
     accessorKey: 'name',
     header: () => h('div', { class: 'text-left' }, 'Name'),
     cell: ({ row }) => {
+      // NOTE: when use a custom component in the first parameter and not just a string
+      // the final argument should be a funciton like coallback that resolvees the value to to
+      // show in the children
       return h(
         RouterLink,
         {
