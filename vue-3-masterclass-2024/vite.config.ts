@@ -29,12 +29,14 @@ export default defineConfig({
         VueRouterAutoImports,
         // custom
         {
+          // auto import store functions
           'pinia': ['defineStore', 'storeToRefs', 'acceptHMRUpdate']
         }
       ],
       dts: true,
       viteOptimizeDeps: true,
       dirs: [
+        // Auto imports stores
         'src/stores'
       ]
     }),

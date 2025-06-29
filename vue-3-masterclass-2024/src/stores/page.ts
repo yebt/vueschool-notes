@@ -9,7 +9,12 @@ export const usePageStore = defineStore('page-store', () => {
   }
 })
 
-// support HMR in dev
+// NOTE: support HMR in dev
 if (import.meta.hot) {
-  import.meta.hot.accept(acceptHMRUpdate(usePageStore, import.meta.hot))
+  import.meta.hot.accept(
+    acceptHMRUpdate(
+      usePageStore, // store
+      import.meta.hot
+    )
+  )
 }
