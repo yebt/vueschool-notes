@@ -48,7 +48,7 @@ const table = useVueTable({
   </div>
 </template>
 
-<style scoped lang="scss">
+<style scoped>
 @reference "@/assets/main.css";
 
 td {
