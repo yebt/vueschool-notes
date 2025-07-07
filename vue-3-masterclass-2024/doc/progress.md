@@ -1,4 +1,6 @@
 # Progress
 
-- 52 Dynamic page titles with pinia
-- init 53
+- 54 ok
+- 55 ok
+- 57 ok
+- 58 ok
