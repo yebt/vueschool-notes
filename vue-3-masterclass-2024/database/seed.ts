@@ -38,6 +38,7 @@ const seedProjects = async (numEntries = 1) => {
     projectsToInsert.push({
       name: name,
       slug: name.replaceAll(/ /g, '-'),
+      description: faker.lorem.paragraphs(2),
       status: faker.helpers.arrayElement(['in-progress', 'completed']),
       collaborators: faker.helpers.arrayElements([1, 2, 3, 4]),
     })
