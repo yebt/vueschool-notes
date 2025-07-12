@@ -1,6 +1,15 @@
 import { fakerES_MX as faker } from '@faker-js/faker'
 import { createClient, PostgrestError } from '@supabase/supabase-js'
-import type { ProjectMin } from '../src/types/Project'
+// import { Tables } from './types.ts'
+
+interface ProjectMin {
+  name: string
+  slug: string
+  description: string
+  status: 'in-progress' | 'completed'
+  collaborators: number[]
+}
+
 
 interface TasksMin {
   name: string
