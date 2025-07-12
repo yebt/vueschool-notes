@@ -6,7 +6,7 @@ const route = useRoute('/projects/[slug]')
 
 const project = ref<ProjectDetails | null>(null)
 
-// BUG: this way not reload the title cause is not a watch
+// WARNING: this way not reload the title cause is not a watch
 // usePageStore().pageData.title = `Project: ${project.value?.name || ''}`
 
 // NOTE: ok way
