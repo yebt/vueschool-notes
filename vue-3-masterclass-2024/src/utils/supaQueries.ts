@@ -35,3 +35,20 @@ export const projectDetailsQuery = (slug: string) =>
     .eq('slug', slug) // get by comparation
     .single() // get single obj
 export type ProjectDetails = QueryData<ReturnType<typeof projectDetailsQuery>>
+
+// Single task details
+export const taskDetailsQuery = (id: string) =>
+  supabase
+    .from('tasks')
+    .select(`
+      *,
+      projects (
+        id,
+        name,
+        slug
+      )
+    `)
+    .eq('id', Number(id))
+    .single()
+
+export type TaskDetailsQuery = QueryData<ReturnType<typeof taskDetailsQuery>>
