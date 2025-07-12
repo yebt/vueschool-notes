@@ -12,7 +12,7 @@ onErrorCaptured((error) => {
 
 <template>
   <AuthLayout>
-    <ErrNotFound v-if="errorStore.activeError"></ErrNotFound>
+    <AppErrorShower v-if="errorStore.activeError"></AppErrorShower>
 
     <RouterView v-else v-slot="{ Component, route }">
       <!-- Note: the timeout is used to wait to resolve the component before show the fallback -->

@@ -8,6 +8,7 @@ export {}
 /* prettier-ignore */
 declare module 'vue' {
   export interface GlobalComponents {
+    AppErrorShower: typeof import('./src/components/AppError/AppErrorShower.vue')['default']
     AsideBar: typeof import('./src/components/Layout/AsideBar.vue')['default']
     AsideBarLinks: typeof import('./src/components/Layout/AsideBarLinks.vue')['default']
     AuthLayout: typeof import('./src/components/Layout/main/AuthLayout.vue')['default']
