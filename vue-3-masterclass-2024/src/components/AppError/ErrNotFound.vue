@@ -1,3 +1,12 @@
+<script setup lang="ts">
+
+const router = useRouter()
+
+router.afterEach(() => {
+  useErrorStore().activeError = false;
+})
+</script>
+
 <template>
   <section class="error">
     <div>
