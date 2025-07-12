@@ -18,9 +18,10 @@ watch(
 )
 
 const getProjetWithDetails = async () => {
-  const { data, error } = await projectDetailsQuery(route.params.slug)
+  const { data, error, status } = await projectDetailsQuery(route.params.slug)
 
-  if (error) console.log(error)
+  if (error)
+    useErrorStore().setError({ error, customCode: status })
 
   project.value = data
 }
