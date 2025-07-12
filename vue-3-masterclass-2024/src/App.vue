@@ -1,12 +1,18 @@
 <script setup lang="ts">
 
-const { activeError } = storeToRefs(useErrorStore())
+const errorStore = useErrorStore()
 
+
+// NOTE: vue lifecicle hook to catch errors from any component
+// https://vuejs.org/api/composition-api-lifecycle.html#onerrorcaptured
+onErrorCaptured((error) => {
+  errorStore.setError({ error })
+})
 </script>
 
 <template>
   <AuthLayout>
-    <ErrNotFound v-if="activeError"></ErrNotFound>
+    <ErrNotFound v-if="errorStore.activeError"></ErrNotFound>
 
     <RouterView v-else v-slot="{ Component, route }">
       <!-- Note: the timeout is used to wait to resolve the component before show the fallback -->
