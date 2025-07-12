@@ -1,5 +1,6 @@
 <script setup lang="ts">
 
+
 const router = useRouter()
 
 const errorStore = useErrorStore()
@@ -25,15 +26,26 @@ if (error.value && ('code' in error.value)) {
   statusCode.value = error.value.statusCode ?? 0;
 }
 
+const ErrorTemplate = import.meta.env.DEV
+  ? defineAsyncComponent(() => import('./AppErrorDevShowerSection.vue'))
+  : defineAsyncComponent(() => import('./AppErrorProdShowerSection.vue'))
+
+// NOTE: hook to clear error
 router.afterEach(() => {
-  errorStore.activeError = null; // clear error on navigate a home
+  // errorStore.activeError = null; // clear error on navigate a home
+  errorStore.clearError()
 })
 
 </script>
 
 <template>
   <section class="error">
-    <AppErrorDevShowerSection :message :hint :details :code :statusCode :customCode />
+
+    <ErrorTemplate :message :hint :details :code :statusCode :customCode :isCustomError="errorStore.isCustomError" />
+
+    <!-- <AppErrorDevShowerSection :message :hint :details :code :statusCode :customCode /> -->
+    <!-- <AppErrorProdShowerSection :message :hint :details :code :statusCode :customCode -->
+    <!--   :isCustomError="errorStore.isCustomError" /> -->
   </section>
 </template>
 

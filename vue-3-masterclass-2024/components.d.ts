@@ -9,6 +9,7 @@ export {}
 declare module 'vue' {
   export interface GlobalComponents {
     AppErrorDevShowerSection: typeof import('./src/components/AppError/AppErrorDevShowerSection.vue')['default']
+    AppErrorProdShowerSection: typeof import('./src/components/AppError/AppErrorProdShowerSection.vue')['default']
     AppErrorShower: typeof import('./src/components/AppError/AppErrorShower.vue')['default']
     AsideBar: typeof import('./src/components/Layout/AsideBar.vue')['default']
     AsideBarLinks: typeof import('./src/components/Layout/AsideBarLinks.vue')['default']
