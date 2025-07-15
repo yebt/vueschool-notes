@@ -56,7 +56,9 @@ export default defineConfig({
         }
       }
     }),
-    vueDevTools(),
+    vueDevTools({
+      launchEditor: 'nvr'
+    }),
   ],
   resolve: {
     alias: {
