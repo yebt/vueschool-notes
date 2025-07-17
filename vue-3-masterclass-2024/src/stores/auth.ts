@@ -1,3 +1,4 @@
+import { supabase } from '@/lib/supabaseClient'
 import { profileQuery } from '@/utils/supaQueries'
 import type { Tables } from '@database/types'
 import type { Session, User } from '@supabase/supabase-js'
@@ -35,19 +36,21 @@ export const useAuthStore = defineStore('auth-store', () => {
     await setProfile()
   }
 
+  // Try get session
+  const getSession = async () => {
+    const { data } = await supabase.auth.getSession()
+
+    if (data.session?.user) await setAuth(data.session)
+  }
+
   return {
-    setAuth,
     user,
     profile,
+    setAuth,
+    getSession,
   }
 })
 
-
 if (import.meta.hot) {
-  import.meta.hot.accept(
-    acceptHMRUpdate(
-      useAuthStore,
-      import.meta.hot
-    )
-  )
+  import.meta.hot.accept(acceptHMRUpdate(useAuthStore, import.meta.hot))
 }

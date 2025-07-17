@@ -11,15 +11,6 @@ onErrorCaptured((error) => {
   errorStore.setError({ error })
 })
 
-// NOTE: reload the session from local storage if exist
-onMounted(async () => {
-  const { data } = await supabase.auth.getSession()
-
-  if (data.session?.user){
-    await authStore.setAuth(data.session)
-  }
-})
-
 </script>
 
 <template>
