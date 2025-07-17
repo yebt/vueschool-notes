@@ -1,13 +1,25 @@
 <script setup lang="ts">
+import { supabase } from './lib/supabaseClient'
+
 
 const errorStore = useErrorStore()
-
+const authStore = useAuthStore()
 
 // NOTE: vue lifecicle hook to catch errors from any component
 // https://vuejs.org/api/composition-api-lifecycle.html#onerrorcaptured
 onErrorCaptured((error) => {
   errorStore.setError({ error })
 })
+
+// NOTE: reload the session from local storage if exist
+onMounted(async () => {
+  const { data } = await supabase.auth.getSession()
+
+  if (data.session?.user){
+    await authStore.setAuth(data.session)
+  }
+})
+
 </script>
 
 <template>
