@@ -52,3 +52,9 @@ export const taskDetailsQuery = (id: string) =>
     .single()
 
 export type TaskDetailsQuery = QueryData<ReturnType<typeof taskDetailsQuery>>
+
+
+// Single Profile
+export const profileQuery = (id: string) => {
+  return supabase.from('profiles').select().eq('id', id).single()
+}
