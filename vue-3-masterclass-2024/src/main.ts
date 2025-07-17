@@ -17,4 +17,7 @@ app.use(router)
 //   // ..
 // }
 
+// NOTE: pinia store can be used in the ts files cause the code is executed after
+// the stores are loaded in the app
+
 app.mount('#app')
