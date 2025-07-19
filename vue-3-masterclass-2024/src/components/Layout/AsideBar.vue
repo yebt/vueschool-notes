@@ -32,7 +32,7 @@ const accountLinks: LinkProp[] = [
   },
   {
     title: 'Sign Out',
-    to: '/signout',
+    // to: '/signout', // remove to execute js and not a route
     icon: 'lucide:log-out',
   },
 ]
