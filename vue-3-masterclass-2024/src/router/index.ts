@@ -17,4 +17,17 @@ const router = createRouter({
 //   await getSession()
 // })
 
+router.beforeEach((to, from) => {
+  const { user } = storeToRefs(useAuthStore())
+  if (
+    !user.value
+    && !(['/login', '/register']).includes(to.path)
+  ) {
+    // redirect to loin page if is not in login
+    return {
+      name: '/login',
+    }
+  }
+})
+
 export default router
