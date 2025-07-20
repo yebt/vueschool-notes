@@ -19,7 +19,8 @@ const router = createRouter({
 
 router.beforeEach(async (to, from) => {
   const authStore = useAuthStore()
-  // wait that check the session stateform the browser
+  // NOTE: wait that check the session state form the browser
+  // cause this funciton set auth session from the browser
   await authStore.getSession()
 
   const isAuthPage = ['/login', '/register'].includes(to.path)
