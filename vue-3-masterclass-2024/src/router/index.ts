@@ -17,15 +17,24 @@ const router = createRouter({
 //   await getSession()
 // })
 
-router.beforeEach((to, from) => {
-  const { user } = storeToRefs(useAuthStore())
-  if (
-    !user.value
-    && !(['/login', '/register']).includes(to.path)
-  ) {
-    // redirect to loin page if is not in login
+router.beforeEach(async (to, from) => {
+  const authStore = useAuthStore()
+  // wait that check the session stateform the browser
+  await authStore.getSession()
+
+  const isAuthPage = ['/login', '/register'].includes(to.path)
+
+  // redirect to loin page if is not in login for the pages that need login
+  if (!authStore.user && !isAuthPage) {
     return {
       name: '/login',
+    }
+  }
+
+  // redirect to home if try logined with a auth session already exist
+  if (authStore.user && isAuthPage) {
+    return {
+      name: '/',
     }
   }
 })
