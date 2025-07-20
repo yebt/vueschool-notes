@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import type { LinkProp } from '@/types/Generals/Aside'
+import { logout } from '@/utils/supaAuth'
 
 const links: LinkProp[] = [
   {
@@ -37,13 +38,17 @@ const accountLinks: LinkProp[] = [
   },
 ]
 
-
-const executeAction = (linkTitle: string) => {
-  if (linkTitle === 'Sign Out'){
+const executeAction = async (linkTitle: string) => {
+  if (linkTitle === 'Sign Out') {
     // ...
+    // WARNING: if try yo use logout directly, this gona to cause problems
+    // cause the logout is try import before the vue render in the app
+    //# await logout()
+
+    const { logout } = await import('@/utils/supaAuth')
+    await logout()
   }
 }
-
 </script>
 
 <template>

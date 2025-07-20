@@ -13,7 +13,6 @@ const emitActionClicked = (linkTitle: string) => {
   // NOTE: here $emit not exist
   emits('actionClicked', linkTitle)
 }
-
 </script>
 
 <template>
@@ -30,11 +29,7 @@ const emitActionClicked = (linkTitle: string) => {
     </RouterLink>
 
     <!-- -->
-    <button
-      v-else
-      class="nav-link w-full cursor-pointer"
-      @click="emitActionClicked(link.title)"
-    >
+    <button v-else class="nav-link w-full cursor-pointer" @click="emitActionClicked(link.title)">
       <iconify-icon :icon="link.icon"></iconify-icon>
       <span class="hidden lg:block text-nowrap">{{ link.title }}</span>
     </button>

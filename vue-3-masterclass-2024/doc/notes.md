@@ -32,3 +32,27 @@ if the timeout is 0, always show the fallback slot
 
 For auth settings liked or not verification mail:
 [doc](https://supabase.com/dashboard/project/ootaiunorfuaalxdqdzu/auth/providers)
+
+
+## Pinia Stores
+
+Timing that cause the error
+
+- supaAuth.ts (init the authStore())
+- AsideBar component (call logout function from supaAuth)
+- AuthLayout render AsideBar
+- App.vue reder AuthLayout
+
+When use a route view, this call after pinia is called
+
+```typescript
+// main.ts
+app.use(createPinia())
+app.use(router)
+
+```
+
+The first the pinia is initialized and after used in router view
+The problem is when import a module in external ts file (supaAuth.ts), where a pinia
+store, but the store can be ussed directly in app.vue without problem
+
