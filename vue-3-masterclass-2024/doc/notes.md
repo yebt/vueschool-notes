@@ -33,6 +33,9 @@ if the timeout is 0, always show the fallback slot
 For auth settings liked or not verification mail:
 [doc](https://supabase.com/dashboard/project/ootaiunorfuaalxdqdzu/auth/providers)
 
+For auth events
+[doc](https://supabase.com/docs/reference/javascript/auth-onauthstatechange)
+
 
 ## Pinia Stores
 

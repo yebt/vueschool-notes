@@ -1,9 +1,5 @@
 <script setup lang="ts">
-import { supabase } from './lib/supabaseClient'
-
-
 const errorStore = useErrorStore()
-const authStore = useAuthStore()
 
 // NOTE: vue lifecicle hook to catch errors from any component
 // https://vuejs.org/api/composition-api-lifecycle.html#onerrorcaptured
@@ -11,6 +7,9 @@ onErrorCaptured((error) => {
   errorStore.setError({ error })
 })
 
+onMounted(() => {
+  useAuthStore().trackAuthChanges()
+})
 </script>
 
 <template>
