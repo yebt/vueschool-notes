@@ -1,5 +1,5 @@
 import { fakerES_MX as faker } from '@faker-js/faker'
-import { createClient, PostgrestError } from '@supabase/supabase-js'
+import { AuthError, createClient, PostgrestError } from '@supabase/supabase-js'
 // import { Tables } from './types.ts'
 
 interface ProjectMin {
@@ -7,15 +7,15 @@ interface ProjectMin {
   slug: string
   description: string
   status: 'in-progress' | 'completed'
-  collaborators: number[]
+  collaborators: string[]
 }
-
 
 interface TasksMin {
   name: string
   status: 'in-progress' | 'completed'
   description: string
   due_date: Date
+  profile_id: string
   project_id: number
   collaborators: (1 | 3 | 2 | 4)[]
 }
@@ -25,7 +25,9 @@ const supabase = createClient(
   process.env.SERVICE_ROLE_KEY ?? '', // Use a service key cause the supabase key because row level security add a constrains to security
 )
 
-const logErrorAndExit = (tableName: string, error: PostgrestError) => {
+const testingUserEmail = process.env.TESTING_USER_EMAIL
+
+const logErrorAndExit = (tableName: string, error: PostgrestError | AuthError) => {
   console.error(
     `An error occurred in table '${tableName}' with code ${error.code}: ${error.message}`,
   )
@@ -36,7 +38,68 @@ const logStep = (stepMessage: string) => {
   console.log(stepMessage)
 }
 
-const seedProjects = async (numEntries = 1) => {
+const PrimaryTestUserExists = async (): Promise<string | null> => {
+  logStep('Check if primary test user exists ...')
+  const { data, error } = await supabase
+    .from('auth.users')
+    .select('id, email')
+    .eq('email', testingUserEmail)
+    .single()
+
+  if (error) {
+    console.log('Primary test user not found. Will create one.')
+    return null
+  }
+
+  logStep('Primary test user is found.')
+  return data?.id
+}
+
+const createPrimaryTestUser = async (): Promise<string | null> => {
+  logStep('Creating primary test user ...')
+  if (!testingUserEmail) {
+    console.log('No testing email found')
+    process.exit(1)
+  }
+
+  const firstName = 'Test'
+  const lastName = 'Accound'
+  const userName = 'testaccount1'
+  const fullName = `${firstName} ${lastName}`
+  const email = testingUserEmail
+  const { data, error } = await supabase.auth.signUp({
+    email: email,
+    password: 'password',
+    options: {
+      data: {
+        first_name: firstName,
+        last_name: lastName,
+        full_name: fullName,
+        userName: userName,
+      },
+    },
+  })
+
+  if (error) {
+    logErrorAndExit('Users', error)
+  }
+
+  if (data && data.user) {
+    const userId = data.user.id
+    await supabase.from('profiles').insert({
+      id: userId,
+      full_name: fullName,
+      username: userName,
+      bio: 'The main testing account',
+      avatar_url: `https://i.pravatar.cc/150?u=${userId}`,
+    })
+    logStep('Primary test user created successfully.')
+    return userId
+  }
+  return null
+}
+
+const seedProjects = async (numEntries = 1, userId: string) => {
   logStep('Seeding projects...')
 
   const projectsToInsert: ProjectMin[] = []
@@ -49,7 +112,7 @@ const seedProjects = async (numEntries = 1) => {
       slug: name.replaceAll(/ /g, '-'),
       description: faker.lorem.paragraphs(2),
       status: faker.helpers.arrayElement(['in-progress', 'completed']),
-      collaborators: faker.helpers.arrayElements([1, 2, 3, 4]),
+      collaborators: faker.helpers.arrayElements([userId]),
     })
   }
 
@@ -63,7 +126,7 @@ const seedProjects = async (numEntries = 1) => {
   return data
 }
 
-const seedTasks = async (numEntries: number, projectIds: number[]) => {
+const seedTasks = async (numEntries: number, projectIds: number[], userId: string) => {
   logStep('Seeding tasks')
   const tasksToInsert: TasksMin[] = []
 
@@ -73,6 +136,7 @@ const seedTasks = async (numEntries: number, projectIds: number[]) => {
       status: faker.helpers.arrayElement(['in-progress', 'completed']),
       description: faker.lorem.paragraph(),
       due_date: faker.date.future(),
+      profile_id: userId,
       project_id: faker.helpers.arrayElement(projectIds),
       collaborators: faker.helpers.arrayElements([1, 2, 3, 4]),
     })
@@ -89,8 +153,16 @@ const seedTasks = async (numEntries: number, projectIds: number[]) => {
 }
 
 const seedDatabase = async (numEntriesPerTable: number) => {
-  const projectIds = (await seedProjects(numEntriesPerTable)).map((project) => project.id)
-  await seedTasks(numEntriesPerTable, projectIds)
+  const testUserId = await PrimaryTestUserExists()
+
+  const userId = testUserId ? testUserId : await createPrimaryTestUser()
+  if (!userId) {
+    console.log('Error taking the user id')
+    process.exit(1)
+  }
+
+  const projectIds = (await seedProjects(numEntriesPerTable, userId)).map((project) => project.id)
+  await seedTasks(numEntriesPerTable, projectIds, userId)
 }
 
 const numEntriesPerTable = 10
