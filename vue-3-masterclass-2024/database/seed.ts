@@ -17,7 +17,8 @@ interface TasksMin {
   due_date: Date
   profile_id: string
   project_id: number
-  collaborators: (1 | 3 | 2 | 4)[]
+  // collaborators: (1 | 3 | 2 | 4)[]
+  collaborators: string[]
 }
 
 const supabase = createClient(
@@ -138,7 +139,7 @@ const seedTasks = async (numEntries: number, projectIds: number[], userId: strin
       due_date: faker.date.future(),
       profile_id: userId,
       project_id: faker.helpers.arrayElement(projectIds),
-      collaborators: faker.helpers.arrayElements([1, 2, 3, 4]),
+      collaborators: faker.helpers.arrayElements([userId]),
     })
   }
 
