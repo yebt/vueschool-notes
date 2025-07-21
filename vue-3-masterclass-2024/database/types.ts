@@ -85,6 +85,7 @@ export type Database = {
           due_date: string | null
           id: number
           name: string
+          profile_id: string
           project_id: number | null
           status: Database["public"]["Enums"]["current_status"]
           updated_at: string
@@ -96,6 +97,7 @@ export type Database = {
           due_date?: string | null
           id?: never
           name: string
+          profile_id: string
           project_id?: number | null
           status?: Database["public"]["Enums"]["current_status"]
           updated_at?: string
@@ -107,11 +109,19 @@ export type Database = {
           due_date?: string | null
           id?: never
           name?: string
+          profile_id?: string
           project_id?: number | null
           status?: Database["public"]["Enums"]["current_status"]
           updated_at?: string
         }
         Relationships: [
+          {
+            foreignKeyName: "tasks_profile_id_fkey"
+            columns: ["profile_id"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
           {
             foreignKeyName: "tasks_project_id_fkey"
             columns: ["project_id"]
