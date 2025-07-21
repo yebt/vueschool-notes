@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { supabase } from '@/lib/supabaseClient'
 import { login } from '@/utils/supaAuth'
 
 const formData = ref({
@@ -7,7 +6,7 @@ const formData = ref({
   password: '',
 })
 
-const _error = ref('')
+const { serverError, handleServerError } = useFormErrors()
 
 const router = useRouter()
 
@@ -16,7 +15,7 @@ const signin = async () => {
 
   if (!error) return router.push('/')
 
-  _error.value = error.code == 'invalid_credentials' ? 'Incorrect email or password' : error.message
+  handleServerError(error)
 }
 </script>
 
@@ -41,7 +40,7 @@ const signin = async () => {
               placeholder="johndoe19@example.com"
               required
               v-model="formData.email"
-              :class="{ 'border-red-500': _error }"
+              :class="{ 'border-red-500': serverError }"
             />
           </div>
           <div class="grid gap-2">
@@ -55,12 +54,12 @@ const signin = async () => {
               autocomplete
               required
               v-model="formData.password"
-              :class="{ 'border-red-500': _error }"
+              :class="{ 'border-red-500': serverError }"
             />
           </div>
 
-          <ul class="text-sm text-left text-red-500" v-if="_error && _error.length != 0">
-            <li class="list-disc">{{ _error }}</li>
+          <ul class="text-sm text-left text-red-500" v-if="serverError">
+            <li class="list-disc">{{ serverError }}</li>
           </ul>
           <Button type="submit" class="w-full"> Login </Button>
         </form>

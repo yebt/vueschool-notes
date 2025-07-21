@@ -37,7 +37,9 @@ export default defineConfig({
       viteOptimizeDeps: true,
       dirs: [
         // Auto imports stores
-        'src/stores'
+        'src/stores/**',
+        // Auto import composables
+        'src/composables/**'
       ]
     }),
     Components({
