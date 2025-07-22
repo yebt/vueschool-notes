@@ -1,0 +1,10 @@
+{
+  "s": {
+    "path": "src/stores",
+    "desc": "Stores"
+  },
+  "p": {
+    "path": "src/pages",
+    "desc": "Pages"
+  }
+}
