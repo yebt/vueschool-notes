@@ -1,14 +1,16 @@
 import type { LoginForm } from '@/types/AuthForm'
 import type { AuthError } from '@supabase/supabase-js'
 
-interface RealtimeErrorForm {
-  email: string[]
-  password: string[]
+// exact copy of a login form and asign to each property a string[]
+// use a generic for make a type usable
+type FormErrors<T> = {
+  [K in keyof T]: string[]
 }
+
 //
 export const useFormErrors = () => {
   const serverError = ref('')
-  const realtimeError = ref<RealtimeErrorForm | null>()
+  const realtimeError = ref<FormErrors<LoginForm>>()
 
   const handleServerError = (error: AuthError) => {
     serverError.value =
