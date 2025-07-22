@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { login } from '@/utils/supaAuth'
+import { watchDebounced } from '@vueuse/core'
 
 const formData = ref({
   email: '',
@@ -9,6 +10,21 @@ const formData = ref({
 const { serverError, handleServerError, realtimeError, handleLoginForm } = useFormErrors()
 
 const router = useRouter()
+
+// this replace the action on input cause is trigger in watch
+watchDebounced(
+  formData,
+  () => {
+    // ..
+    handleLoginForm(formData.value)
+  },
+  {
+    // 1s = 1000 ms
+    // debounce: 1000,
+    debounce: 400,
+    deep: true, // track changes in nested object
+  },
+)
 
 const signin = async () => {
   const { error } = await login(formData.value)
@@ -41,7 +57,6 @@ const signin = async () => {
               required
               v-model="formData.email"
               :class="{ 'border-red-500': serverError }"
-              @input="handleLoginForm(formData)"
             />
 
             <ul class="text-sm text-left text-red-500" v-if="realtimeError?.email.length">
@@ -62,7 +77,6 @@ const signin = async () => {
               required
               v-model="formData.password"
               :class="{ 'border-red-500': serverError }"
-              @input="handleLoginForm(formData)"
             />
 
             <ul class="text-sm text-left text-red-500" v-if="realtimeError?.password.length">
