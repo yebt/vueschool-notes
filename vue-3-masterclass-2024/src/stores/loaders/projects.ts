@@ -12,6 +12,7 @@ export const useProjectsStore = defineStore('project-store', () => {
       projectsQuery.then(({ data }) => {
         if (JSON.stringify(projectsList.value) === JSON.stringify(data)) {
           console.log('Cached and fresh data matched')
+          return
         } else {
           console.log('some has changed')
           // Remove the old data
