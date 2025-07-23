@@ -19,6 +19,11 @@ exactActiveClass=""
 
 Fetch data, store things
 
+## Stale while revalidate
+
+Cache technique to return the cached content and update cache content in
+background
+
 ## Suspense
 
 ```vue

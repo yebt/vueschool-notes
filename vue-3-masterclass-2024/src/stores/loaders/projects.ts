@@ -7,6 +7,20 @@ export const useProjectsStore = defineStore('project-store', () => {
   // wrap promise or composable
   const loadProjects = useMemoize(async (_: string) => await projectsQuery)
 
+  const validateCache = () => {
+    if (projectsList.value?.length) {
+      projectsQuery.then(({ data }) => {
+        if (JSON.stringify(projectsList.value) === JSON.stringify(data)) {
+          console.log('Cached and fresh data matched')
+        } else {
+          console.log('some has changed')
+          // Remove the old data
+          loadProjects.delete('projects')
+        }
+      })
+    }
+  }
+
   const getProjects = async () => {
     // NOTE: not need cause useMemoize
     // if (projectsList.value?.length) return
@@ -15,7 +29,10 @@ export const useProjectsStore = defineStore('project-store', () => {
     const { data, error, status } = await loadProjects('projects')
 
     if (error) useErrorStore().setError({ error, customCode: status })
+
     projectsList.value = data ?? []
+
+    validateCache()
   }
   return {
     projectsList,
