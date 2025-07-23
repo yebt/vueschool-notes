@@ -18,6 +18,9 @@
   "u": {
     "path": "src/utils",
     "desc": "Utils"
+  },
+  "t": {
+    "path": "src/types",
+    "desc": "Types"
   }
-
 }

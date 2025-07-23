@@ -8,6 +8,13 @@ const { projectsList } = storeToRefs(projectsLoader)
 const { getProjects } = projectsLoader
 
 await getProjects()
+
+const { getGroupedCollabs, groupedCollabs }  = useCollabs()
+
+await getGroupedCollabs(projectsList.value)
+
+
+
 </script>
 
 <template>

@@ -59,3 +59,10 @@ export type TaskDetailsQuery = QueryData<ReturnType<typeof taskDetailsQuery>>
 export const profileQuery = ({ column, value }: { column: string; value: string }) => {
   return supabase.from('profiles').select().eq(column, value).single()
 }
+
+// Get profiles in ids
+export const groupedProfilesQuery = (userIds: string[]) => {
+  return supabase
+    .from('profiles').select('username, avatar_url, id, full_name').in('id', userIds)
+}
+export type Collabs = QueryData<ReturnType<typeof groupedProfilesQuery>>
