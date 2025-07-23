@@ -15,6 +15,9 @@ activeClass=""
 exactActiveClass=""
 
 ```
+## Loaders
+
+Fetch data, store things
 
 ## Suspense
 
