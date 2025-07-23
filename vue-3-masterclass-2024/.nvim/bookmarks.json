@@ -6,5 +6,18 @@
   "p": {
     "path": "src/pages",
     "desc": "Pages"
+  },
+  "c": {
+    "path": "src/components",
+    "desc": "Components"
+  },
+  "C": {
+    "path": "src/composables",
+    "desc": "Composables"
+  },
+  "u": {
+    "path": "src/utils",
+    "desc": "Utils"
   }
+
 }
