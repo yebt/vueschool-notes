@@ -13,10 +13,10 @@ const { getGroupedCollabs, groupedCollabs }  = useCollabs()
 
 await getGroupedCollabs(projectsList.value)
 
-
+const columnsWithCollabs = columns(groupedCollabs)
 
 </script>
 
 <template>
-  <DataTable v-if="projectsList" :columns="columns" :data="projectsList" />
+  <DataTable v-if="projectsList" :columns="columnsWithCollabs" :data="projectsList" />
 </template>

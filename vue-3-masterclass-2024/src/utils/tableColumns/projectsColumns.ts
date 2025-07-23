@@ -1,8 +1,11 @@
-import type { ColumnDef } from "@tanstack/vue-table"
-import type { Projects } from "../supaQueries"
-import { RouterLink } from "vue-router"
+import type { ColumnDef } from '@tanstack/vue-table'
+import type { Projects } from '../supaQueries'
+import type { Ref } from 'vue'
+import { RouterLink } from 'vue-router'
+import type { GroupedCollabs } from '@/types/GroupCollabs'
+import { Avatar, AvatarImage } from '@/components/ui/avatar'
 
-export const columns: ColumnDef<Projects[0]>[] = [
+export const columns = (collabs: Ref<GroupedCollabs>): ColumnDef<Projects[0]>[] => [
   {
     accessorKey: 'name',
     header: () => h('div', { class: 'text-left' }, 'Name'),
@@ -35,6 +38,18 @@ export const columns: ColumnDef<Projects[0]>[] = [
     },
   },
 
+  // {
+  //   accessorKey: 'collaborators',
+  //   header: () => h('div', { class: 'text-left' }, 'Collaborators'),
+  //   cell: ({ row }) => {
+  //     return h(
+  //       'div',
+  //       { class: 'text-left font-medium' },
+  //       JSON.stringify(row.getValue('collaborators')),
+  //     )
+  //   },
+  // },
+
   {
     accessorKey: 'collaborators',
     header: () => h('div', { class: 'text-left' }, 'Collaborators'),
@@ -42,7 +57,12 @@ export const columns: ColumnDef<Projects[0]>[] = [
       return h(
         'div',
         { class: 'text-left font-medium' },
-        JSON.stringify(row.getValue('collaborators')),
+        collabs.value[row.original.id].map((collab)=>{
+          // render de avatar
+          return h(Avatar,
+            ()=> h(AvatarImage, {src: collab.avatar_url || ''})
+          )
+        })
       )
     },
   },
