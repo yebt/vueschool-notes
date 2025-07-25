@@ -1,55 +1,47 @@
 <script setup lang="ts">
-import { projectDetailsQuery } from '@/utils/supaQueries'
-import type { ProjectDetails } from '@/utils/supaQueries'
+const { slug } = useRoute('/projects/[slug]').params
 
-const route = useRoute('/projects/[slug]')
-
-const project = ref<ProjectDetails | null>(null)
+const projectLoader = useProjectsStore()
+const { singleProjectWithDetails } = storeToRefs(projectLoader)
+const { getProjetWithDetails } = projectLoader
 
 // WARNING: this way not reload the title cause is not a watch
-// usePageStore().pageData.title = `Project: ${project.value?.name || ''}`
+// usePageStore().pageData.title = `Project: ${singleProjectWithDetails.value?.name || ''}`
 
 // NOTE: ok way
 watch(
-  () => project.value?.name,
+  () => singleProjectWithDetails.value?.name,
   () => {
-    usePageStore().pageData.title = `Project: ${project.value?.name || ''}`
-  }
+    usePageStore().pageData.title = `Project: ${singleProjectWithDetails.value?.name || ''}`
+  },
 )
 
-const getProjetWithDetails = async () => {
-  const { data, error, status } = await projectDetailsQuery(route.params.slug)
-
-  if (error)
-    useErrorStore().setError({ error, customCode: status })
-
-  project.value = data
-}
-
-await getProjetWithDetails()
-
+await getProjetWithDetails(slug)
 </script>
 
 <template>
-  <Table v-if="project">
+  <Table v-if="singleProjectWithDetails">
     <TableRow>
       <TableHead> Name </TableHead>
-      <TableCell> {{ project.name }} </TableCell>
+      <TableCell> {{ singleProjectWithDetails.name }} </TableCell>
     </TableRow>
     <TableRow>
       <TableHead> Description </TableHead>
-      <TableCell> {{ project.description }} </TableCell>
+      <TableCell> {{ singleProjectWithDetails.description }} </TableCell>
     </TableRow>
     <TableRow>
       <TableHead> Status </TableHead>
-      <TableCell>{{ project.status }}</TableCell>
+      <TableCell>{{ singleProjectWithDetails.status }}</TableCell>
     </TableRow>
     <TableRow>
       <TableHead> Collaborators </TableHead>
       <TableCell>
         <div class="flex">
-          <Avatar class="-mr-3 border border-primary hover:scale-110 hover:z-2 transition-transform"
-            v-for="collab in project.collaborators" :key="collab">
+          <Avatar
+            class="-mr-3 border border-primary hover:scale-110 hover:z-2 transition-transform"
+            v-for="collab in singleProjectWithDetails.collaborators"
+            :key="collab"
+          >
             <RouterLink class="w-full h-full flex items-center justify-center" to="">
               <AvatarImage src="" alt="" />
               <AvatarFallback> </AvatarFallback>
@@ -60,7 +52,10 @@ await getProjetWithDetails()
     </TableRow>
   </Table>
 
-  <section v-if="project" class="mt-10 flex flex-col md:flex-row gap-5 justify-between grow">
+  <section
+    v-if="singleProjectWithDetails"
+    class="mt-10 flex flex-col md:flex-row gap-5 justify-between grow"
+  >
     <div class="flex-1">
       <h2>Tasks</h2>
       <div class="table-container">
@@ -73,7 +68,7 @@ await getProjetWithDetails()
             </TableRow>
           </TableHeader>
           <TableBody>
-            <TableRow v-for="task in project.tasks" :key="task.id">
+            <TableRow v-for="task in singleProjectWithDetails.tasks" :key="task.id">
               <TableCell> Lorem ipsum dolor sit amet. </TableCell>
               <TableCell> In progress </TableCell>
               <TableCell> 22/08/2024 </TableCell>

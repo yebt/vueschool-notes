@@ -1,11 +1,16 @@
-import { projectsQuery, type Projects } from '@/utils/supaQueries'
+import { projectDetailsQuery, projectsQuery } from '@/utils/supaQueries'
+import type { ProjectDetails, Projects } from '@/utils/supaQueries'
 import { useMemoize } from '@vueuse/core'
 
 export const useProjectsStore = defineStore('project-store', () => {
-  const projectsList = ref<Projects>([])
 
-  // wrap promise or composable
+  // States
+  const projectsList = ref<Projects>([])
+  const singleProjectWithDetails = ref<ProjectDetails>()
+
+  // wrap promise or composable, to cache it
   const loadProjects = useMemoize(async (_: string) => await projectsQuery)
+  const loadProjectWithDetails = useMemoize(async (slug: string) => await projectDetailsQuery(slug))
 
   const validateCache = () => {
     if (projectsList.value?.length) {
@@ -33,8 +38,19 @@ export const useProjectsStore = defineStore('project-store', () => {
 
     validateCache()
   }
+
+  const getProjetWithDetails = async (slug: string) => {
+    const { data, error, status } = await loadProjectWithDetails(slug)
+
+    if (error) useErrorStore().setError({ error, customCode: status })
+
+    if (data) singleProjectWithDetails.value = data
+  }
+
   return {
     projectsList,
     getProjects,
+    getProjetWithDetails,
+    singleProjectWithDetails,
   }
 })
