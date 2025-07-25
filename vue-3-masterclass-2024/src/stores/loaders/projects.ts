@@ -39,6 +39,9 @@ export const useProjectsStore = defineStore('project-store', () => {
     // if (projectsList.value?.length) return
     // const { data, error, status } = await projectsQuery
 
+    // NOTE: force watch detect the changes
+    projectsList.value = null // empty first to get from cache
+
     const { data, error, status } = await loadProjects('projects')
 
     if (error) useErrorStore().setError({ error, customCode: status })
@@ -54,6 +57,9 @@ export const useProjectsStore = defineStore('project-store', () => {
   }
 
   const getProjetWithDetails = async (slug: string) => {
+    // NOTE: force watch detect the changes
+    singleProjectWithDetails.value = null // Reset the state to trigger the watchs
+
     const { data, error, status } = await loadProjectWithDetails(slug)
 
     if (error) useErrorStore().setError({ error, customCode: status })
