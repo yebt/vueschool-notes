@@ -1,4 +1,4 @@
-import { projectDetailsQuery, projectsQuery } from '@/utils/supaQueries'
+import { projectDetailsQuery, projectsQuery, updateProjectQuery } from '@/utils/supaQueries'
 import type { ProjectDetails, Projects } from '@/utils/supaQueries'
 import { useMemoize } from '@vueuse/core'
 import type { Ref } from 'vue'
@@ -74,10 +74,20 @@ export const useProjectsStore = defineStore('project-store', () => {
     })
   }
 
+  const updateProject = async () => {
+    if (!singleProjectWithDetails.value) return
+
+    // remove the task of the project and not necesary items
+    const { tasks, id, ...projectProperties } = singleProjectWithDetails.value
+
+    await updateProjectQuery(projectProperties, singleProjectWithDetails.value.id)
+  }
+
   return {
     projectsList,
     getProjects,
     getProjetWithDetails,
     singleProjectWithDetails,
+    updateProject,
   }
 })

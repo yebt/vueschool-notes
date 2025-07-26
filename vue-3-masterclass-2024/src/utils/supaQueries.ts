@@ -36,6 +36,10 @@ export const projectDetailsQuery = (slug: string) =>
     .single() // get single obj
 export type ProjectDetails = QueryData<ReturnType<typeof projectDetailsQuery>>
 
+export const updateProjectQuery = (updateProject ={}, id: number) => {
+  return supabase.from('projects').update(updateProject).eq('id', id)
+}
+
 // Single task details
 export const taskDetailsQuery = (id: string) =>
   supabase
@@ -66,3 +70,4 @@ export const groupedProfilesQuery = (userIds: string[]) => {
     .from('profiles').select('username, avatar_url, id, full_name').in('id', userIds)
 }
 export type Collabs = QueryData<ReturnType<typeof groupedProfilesQuery>>
+
