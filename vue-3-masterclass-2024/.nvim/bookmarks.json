@@ -22,5 +22,9 @@
   "t": {
     "path": "src/types",
     "desc": "Types"
+  },
+  "l": {
+    "path": "src/stores/loaders",
+    "desc": "Loaders"
   }
 }
