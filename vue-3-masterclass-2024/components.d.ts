@@ -11,6 +11,7 @@ declare module 'vue' {
     AppErrorDevShowerSection: typeof import('./src/components/AppError/AppErrorDevShowerSection.vue')['default']
     AppErrorProdShowerSection: typeof import('./src/components/AppError/AppErrorProdShowerSection.vue')['default']
     AppErrorShower: typeof import('./src/components/AppError/AppErrorShower.vue')['default']
+    AppInPlaceEditText: typeof import('./src/components/AppInPlaceEdit/AppInPlaceEditText.vue')['default']
     AsideBar: typeof import('./src/components/Layout/AsideBar.vue')['default']
     AsideBarLinks: typeof import('./src/components/Layout/AsideBarLinks.vue')['default']
     AuthLayout: typeof import('./src/components/Layout/main/AuthLayout.vue')['default']

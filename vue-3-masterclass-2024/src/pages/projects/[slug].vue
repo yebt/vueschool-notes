@@ -23,7 +23,8 @@ await getProjetWithDetails(slug)
   <Table v-if="singleProjectWithDetails">
     <TableRow>
       <TableHead> Name </TableHead>
-      <TableCell> {{ singleProjectWithDetails.name }} </TableCell>
+      <!-- <TableCell> {{ singleProjectWithDetails.name }} </TableCell> -->
+      <TableCell> <AppInPlaceEditText v-model="singleProjectWithDetails.name" /> </TableCell>
     </TableRow>
     <TableRow>
       <TableHead> Description </TableHead>
