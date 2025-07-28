@@ -17,6 +17,11 @@ watch(
 )
 
 await getProjetWithDetails(slug)
+
+const { getProfilesByIds } = useCollabs()
+const collabs = singleProjectWithDetails.value?.collaborators
+  ? await getProfilesByIds(singleProjectWithDetails.value?.collaborators)
+  : []
 </script>
 
 <template>
@@ -50,11 +55,14 @@ await getProjetWithDetails(slug)
         <div class="flex">
           <Avatar
             class="-mr-3 border border-primary hover:scale-110 hover:z-2 transition-transform"
-            v-for="collab in singleProjectWithDetails.collaborators"
-            :key="collab"
+            v-for="collab in collabs"
+            :key="collab.id"
           >
-            <RouterLink class="w-full h-full flex items-center justify-center" to="">
-              <AvatarImage src="" alt="" />
+            <RouterLink
+              class="w-full h-full flex items-center justify-center"
+              :to="{ name: '/users/[username]', params: { username: collab.username } }"
+            >
+              <AvatarImage :src="collab.avatar_url || ''" alt="" />
               <AvatarFallback> </AvatarFallback>
             </RouterLink>
           </Avatar>
@@ -80,9 +88,18 @@ await getProjetWithDetails(slug)
           </TableHeader>
           <TableBody>
             <TableRow v-for="task in singleProjectWithDetails.tasks" :key="task.id">
-              <TableCell> Lorem ipsum dolor sit amet. </TableCell>
-              <TableCell> In progress </TableCell>
-              <TableCell> 22/08/2024 </TableCell>
+              <TableCell class="p-0">
+                <RouterLink
+                  class="text-left block p-4 hover:bg-muted"
+                  :to="{ name: '/tasks/[id]', params: { id: task.id } }"
+                >
+                  {{ task.name }}
+                </RouterLink>
+              </TableCell>
+              <TableCell>
+                <AppInPlaceEditStatus readonly :modelValue="task.status" />
+              </TableCell>
+              <TableCell> </TableCell>
             </TableRow>
           </TableBody>
         </Table>
