@@ -1,5 +1,5 @@
 <script setup lang="ts">
-const value = defineModel<string | null>()
+const value = defineModel<string>()
 const emit = defineEmits(['commit'])
 </script>
 

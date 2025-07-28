@@ -36,7 +36,7 @@ const collabs = singleProjectWithDetails.value?.collaborators
     <TableRow>
       <TableHead> Description </TableHead>
       <TableCell>
-        <AppInPlaceEditAreaTextt
+        <AppInPlaceEditTextarea
           v-model="singleProjectWithDetails.description"
           @commit="updateProject"
         />
@@ -99,7 +99,7 @@ const collabs = singleProjectWithDetails.value?.collaborators
               <TableCell>
                 <AppInPlaceEditStatus readonly :modelValue="task.status" />
               </TableCell>
-              <TableCell> </TableCell>
+              <TableCell> 20-02-2025 </TableCell>
             </TableRow>
           </TableBody>
         </Table>
