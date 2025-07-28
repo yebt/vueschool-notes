@@ -1,11 +1,24 @@
 <script setup lang="ts">
 import type { Tables } from '@database/types'
 
+// interface Props {
+//   readonly?: boolean
+// }
+// const props = withDefaults(defineProps<Props>(), {
+//   readonly: false,
+// })
+
+const { readonly = false } = defineProps<{
+  readonly?: boolean
+}>()
+
 type ProjectStatus = Tables<'projects'>['status']
 
 const value = defineModel<ProjectStatus>()
 
 const toggleValue = () => {
+  if (readonly) return
+
   value.value = value.value === 'completed' ? 'in-progress' : 'completed'
   // NOTE: call defined commit event
   emit('commit')
