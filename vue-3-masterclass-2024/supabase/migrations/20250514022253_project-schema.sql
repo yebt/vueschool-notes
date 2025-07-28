@@ -9,7 +9,7 @@ CREATE TABLE
     id BIGINT PRIMARY KEY GENERATED ALWAYS AS IDENTITY NOT NULL,
     name TEXT NOT NULL,
     slug TEXT UNIQUE NOT NULL,
-    description text,
+    description TEXT NOT NULL DEFAULT '',
     status current_status DEFAULT 'in-progress' NOT NULL,
     collaborators TEXT ARRAY DEFAULT ARRAY[]::VARCHAR[] NOT NULL,
     updated_at TIMESTAMPTZ DEFAULT NOW() NOT NULL,
