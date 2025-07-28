@@ -41,7 +41,7 @@ await getProjetWithDetails(slug)
       <TableHead> Status </TableHead>
       <!-- <TableCell>{{ singleProjectWithDetails.status }}</TableCell> -->
       <TableCell>
-        <AppInPlaceEditStatus v-model="singleProjectWithDetails.status" />
+        <AppInPlaceEditStatus v-model="singleProjectWithDetails.status" @commit="updateProject" />
       </TableCell>
     </TableRow>
     <TableRow>
