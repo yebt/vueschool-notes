@@ -4,6 +4,7 @@ import type { Ref } from 'vue'
 import { RouterLink } from 'vue-router'
 import type { GroupedCollabs } from '@/types/GroupCollabs'
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
+import AppInPlaceEditStatus from '@/components/AppInPlaceEdit/AppInPlaceEditStatus.vue'
 
 export const columns = (collabs: Ref<GroupedCollabs>): ColumnDef<Projects[0]>[] => [
   {
@@ -30,11 +31,22 @@ export const columns = (collabs: Ref<GroupedCollabs>): ColumnDef<Projects[0]>[] 
       return h('div', { class: 'text-left font-medium' }, row.getValue('slug'))
     },
   },
+  // {
+  //   accessorKey: 'status',
+  //   header: () => h('div', { class: 'text-left' }, 'Status'),
+  //   cell: ({ row }) => {
+  //     return h('div', { class: 'text-left font-medium' }, row.getValue('status'))
+  //   },
+  // },
   {
     accessorKey: 'status',
     header: () => h('div', { class: 'text-left' }, 'Status'),
     cell: ({ row }) => {
-      return h('div', { class: 'text-left font-medium' }, row.getValue('status'))
+      return h(
+        'div',
+        { class: 'text-left font-medium' },
+        h(AppInPlaceEditStatus, { modelValue: row.original.status }),
+      )
     },
   },
 

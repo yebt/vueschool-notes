@@ -25,16 +25,24 @@ await getProjetWithDetails(slug)
       <TableHead> Name </TableHead>
       <!-- <TableCell> {{ singleProjectWithDetails.name }} </TableCell> -->
       <TableCell>
-        <AppInPlaceEditText v-model="singleProjectWithDetails.name" @commit="updateProject"  />
+        <AppInPlaceEditText v-model="singleProjectWithDetails.name" @commit="updateProject" />
       </TableCell>
     </TableRow>
     <TableRow>
       <TableHead> Description </TableHead>
-      <TableCell> {{ singleProjectWithDetails.description }} </TableCell>
+      <TableCell>
+        <AppInPlaceEditAreaTextt
+          v-model="singleProjectWithDetails.description"
+          @commit="updateProject"
+        />
+      </TableCell>
     </TableRow>
     <TableRow>
       <TableHead> Status </TableHead>
-      <TableCell>{{ singleProjectWithDetails.status }}</TableCell>
+      <!-- <TableCell>{{ singleProjectWithDetails.status }}</TableCell> -->
+      <TableCell>
+        <AppInPlaceEditStatus v-model="singleProjectWithDetails.status" />
+      </TableCell>
     </TableRow>
     <TableRow>
       <TableHead> Collaborators </TableHead>
