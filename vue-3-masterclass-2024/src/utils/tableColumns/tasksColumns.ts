@@ -1,8 +1,11 @@
-import type { ColumnDef } from "@tanstack/vue-table"
-import type { TasksWithProjects } from "../supaQueries"
-import { RouterLink } from "vue-router"
+import type { ColumnDef } from '@tanstack/vue-table'
+import type { TasksWithProjects } from '../supaQueries'
+import { RouterLink } from 'vue-router'
+import type { GroupedCollabs } from '@/types/GroupCollabs'
+import CollaboratorsList from '@/components/Sharable/Collaborators/CollaboratorsList.vue'
 
-export const columns: ColumnDef<TasksWithProjects[0]>[] = [
+// export const columns: ColumnDef<TasksWithProjects[0]>[] = [
+export const columns = (collabs: Ref<GroupedCollabs>): ColumnDef<TasksWithProjects[0]>[] => [
   {
     accessorKey: 'name',
     header: () => h('div', { class: 'text-left' }, 'Name'),
@@ -55,10 +58,17 @@ export const columns: ColumnDef<TasksWithProjects[0]>[] = [
     header: () => h('div', { class: 'text-left' }, 'Collaborators'),
     cell: ({ row }) => {
       return h(
-        'div',
-        { class: 'text-left font-medium' },
-        JSON.stringify(row.getValue('collaborators')),
+        CollaboratorsList,
+        {
+          collaboratorsInTask: collabs.value[row.original.id]
+        },
+        // ()=> collabs.value[row.original.id]
       )
+      // return h(
+      //   'div',
+      //   { class: 'text-left font-medium' },
+      //   JSON.stringify(row.getValue('collaborators')),
+      // )
     },
   },
 ]
