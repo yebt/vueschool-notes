@@ -3,6 +3,7 @@ import type { TasksWithProjects } from '../supaQueries'
 import { RouterLink } from 'vue-router'
 import type { GroupedCollabs } from '@/types/GroupCollabs'
 import CollaboratorsList from '@/components/Sharable/Collaborators/CollaboratorsList.vue'
+import AppInPlaceEditStatus from '@/components/AppInPlaceEdit/AppInPlaceEditStatus.vue'
 
 // export const columns: ColumnDef<TasksWithProjects[0]>[] = [
 export const columns = (collabs: Ref<GroupedCollabs>): ColumnDef<TasksWithProjects[0]>[] => [
@@ -24,7 +25,12 @@ export const columns = (collabs: Ref<GroupedCollabs>): ColumnDef<TasksWithProjec
     accessorKey: 'status',
     header: () => h('div', { class: 'text-left' }, 'Status'),
     cell: ({ row }) => {
-      return h('div', { class: 'text-left font-medium' }, row.getValue('status'))
+      return h(
+        'div',
+        { class: 'text-left font-medium' },
+        // row.getValue('status')
+        h(AppInPlaceEditStatus, { modelValue: row.original.status, readonly: true }),
+      )
     },
   },
   {
@@ -57,18 +63,9 @@ export const columns = (collabs: Ref<GroupedCollabs>): ColumnDef<TasksWithProjec
     accessorKey: 'collaborators',
     header: () => h('div', { class: 'text-left' }, 'Collaborators'),
     cell: ({ row }) => {
-      return h(
-        CollaboratorsList,
-        {
-          collaboratorsInTask: collabs.value[row.original.id]
-        },
-        // ()=> collabs.value[row.original.id]
-      )
-      // return h(
-      //   'div',
-      //   { class: 'text-left font-medium' },
-      //   JSON.stringify(row.getValue('collaborators')),
-      // )
+      return h(CollaboratorsList, {
+        collaboratorsInTask: collabs.value[row.original.id],
+      })
     },
   },
 ]
