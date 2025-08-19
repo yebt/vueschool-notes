@@ -91,3 +91,7 @@ export const useProjectsStore = defineStore('project-store', () => {
     updateProject,
   }
 })
+
+if (import.meta.hot) {
+  import.meta.hot.accept(acceptHMRUpdate(useProjectsStore, import.meta.hot))
+}
