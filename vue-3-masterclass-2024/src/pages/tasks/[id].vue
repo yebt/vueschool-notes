@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { taskDetailsQuery, type TaskDetailsQuery } from '@/utils/supaQueries'
+import { taskDetailsQuery, type Collabs, type TaskDetailsQuery } from '@/utils/supaQueries'
 
 const { id } = useRoute('/tasks/[id]').params
 
@@ -7,9 +7,7 @@ const taskLoader = useTasksStore()
 const { singleTask } = storeToRefs(taskLoader)
 const { getSingleTask, updateTask } = taskLoader
 
-// usePageStore().pageData.title = `Task #${route.params?.id}`
-
-// const currentTask = ref<TaskDetailsQuery | null>(null)
+const taskCollabs = ref<Collabs>([])
 
 watch(
   () => singleTask.value?.name,
@@ -31,9 +29,15 @@ await getSingleTask(id)
 
 const { getProfilesByIds } = useCollabs()
 
-const collabs = singleTask.value?.collaborators
-  ? await getProfilesByIds(singleTask.value?.collaborators)
-  : []
+// get collabs async
+if (singleTask.value) {
+  getProfilesByIds(singleTask.value?.collaborators).then((collabsResult) => {
+    taskCollabs.value = collabsResult
+  })
+}
+// const collabs = singleTask.value?.collaborators
+//   ? await getProfilesByIds(singleTask.value?.collaborators)
+//   : []
 </script>
 
 <template>
@@ -41,40 +45,59 @@ const collabs = singleTask.value?.collaborators
     <TableRow>
       <TableHead> Name </TableHead>
       <TableCell>
-        <AppInPlaceEditText v-model="singleTask.name" />
+        <AppInPlaceEditText v-model="singleTask.name" @commit="updateTask" />
       </TableCell>
       <!-- <TableCell> {{ singleTask.name }} </TableCell> -->
     </TableRow>
     <TableRow>
       <TableHead> Description </TableHead>
       <TableCell>
-        <AppInPlaceEditTextarea v-model="singleTask.description" />
+        <AppInPlaceEditTextarea v-model="singleTask.description" @commit="updateTask" />
         <!-- {{ singleTask.description }} -->
       </TableCell>
     </TableRow>
-    <TableRow>
-      <TableHead> Assignee </TableHead>
-      <TableCell> {{ singleTask.collaborators }} </TableCell>
-    </TableRow>
+    <!-- <TableRow> -->
+    <!--   <TableHead> Assignee </TableHead> -->
+    <!--   <TableCell> {{ singleTask.collaborators }} </TableCell> -->
+    <!-- </TableRow> -->
     <TableRow>
       <TableHead> Project </TableHead>
-      <TableCell> {{ singleTask.projects?.name }} </TableCell>
+      <TableCell>
+        <RouterLink
+          v-if="singleTask.projects"
+          :to="{ name: '/projects/[slug]', params: { slug: singleTask.projects.slug } }"
+          class="hover:underline p-3"
+        >
+          {{ singleTask.projects.name }}
+        </RouterLink>
+        <span v-else> .... </span>
+      </TableCell>
     </TableRow>
     <TableRow>
       <TableHead> Status </TableHead>
-      <TableCell>{{ singleTask.status }}</TableCell>
+      <TableCell>
+        <!-- {{ singleTask.status }} -->
+        <AppInPlaceEditStatus v-model="singleTask.status" @commit="updateTask" />
+      </TableCell>
     </TableRow>
     <TableRow>
       <TableHead> Collaborators </TableHead>
       <TableCell>
         <div class="flex">
+          <Avatar v-if="singleTask.collaborators.length > 0 && taskCollabs.length == 0">
+            <AvatarFallback class="animate-ping" />
+          </Avatar>
           <Avatar
+            v-else-if="singleTask.collaborators.length > 0"
             class="-mr-4 border border-primary hover:scale-110 transition-transform"
-            v-for="collaborator in singleTask.collaborators"
-            :key="collaborator"
+            v-for="collaborator in taskCollabs"
+            :key="collaborator.id"
           >
-            <RouterLink class="w-full h-full flex items-center justify-center" to="">
-              <AvatarImage src="" alt="" />
+            <RouterLink
+              class="w-full h-full flex items-center justify-center"
+              :to="{ name: '/users/[username]', params: { username: collaborator.username } }"
+            >
+              <AvatarImage :src="collaborator.avatar_url || ''" :alt="collaborator.username" />
               <AvatarFallback> </AvatarFallback>
             </RouterLink>
           </Avatar>
@@ -91,8 +114,7 @@ const collabs = singleTask.value?.collaborators
           <textarea
             placeholder="Add your comment.."
             class="w-full max-w-full overflow-y-auto prose-sm prose border rounded dark:prose-invert hover:border-muted bg-background border-muted p-3"
-          >
-          </textarea>
+          ></textarea>
           <div class="flex justify-between mt-3">
             <Button> Comment </Button>
             <div class="flex gap-4">
