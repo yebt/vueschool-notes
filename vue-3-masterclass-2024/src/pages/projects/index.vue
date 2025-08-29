@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { columns } from '@/utils/tableColumns/projectsColumns'
+import { title } from 'node:process'
 
 usePageStore().pageData.title = 'Projects page'
 
@@ -15,6 +16,13 @@ getGroupedCollabs(projectsList.value ?? [])
 
 const columnsWithCollabs = columns(groupedCollabs)
 
+useMeta({
+  title: 'Projects | Pulse',
+  description: {
+    name: 'description',
+    content: 'Pulse ...'
+  }
+})
 </script>
 
 <template>

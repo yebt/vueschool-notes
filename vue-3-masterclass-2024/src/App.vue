@@ -21,9 +21,14 @@ const ACompAuthLayout = defineAsyncComponent(
 const ACompGuestLayout = defineAsyncComponent(
   () => import('@/components/Layout/main/GuestLayout.vue'),
 )
+
+useMeta({
+  title: 'Pulse'
+})
 </script>
 
 <template>
+  <metainfo></metainfo>
   <Transition name="fade" mode="out-in">
     <Component :is="user ? ACompAuthLayout : ACompGuestLayout" :key="user?.id">
       <AppErrorShower v-if="errorStore.activeError"></AppErrorShower>

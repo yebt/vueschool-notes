@@ -13,7 +13,6 @@ import Components from 'unplugin-vue-components/vite'
 export default defineConfig({
   plugins: [
     AutoIport({
-
       // targets to transform
       include: [
         /\.[tj]sx?$/, // .ts, .tsx, .js, .jsx
@@ -30,8 +29,11 @@ export default defineConfig({
         // custom
         {
           // auto import store functions
-          'pinia': ['defineStore', 'storeToRefs', 'acceptHMRUpdate']
-        }
+          pinia: ['defineStore', 'storeToRefs', 'acceptHMRUpdate'],
+        },
+        {
+          'vue-meta': ['useMeta'],
+        },
       ],
       dts: true,
       viteOptimizeDeps: true,
@@ -39,8 +41,8 @@ export default defineConfig({
         // Auto imports stores
         'src/stores/**',
         // Auto import composables
-        'src/composables/**'
-      ]
+        'src/composables/**',
+      ],
     }),
     Components({
       dts: true, // enabled by default if `typescript` is installed
@@ -54,17 +56,17 @@ export default defineConfig({
     vue({
       template: {
         compilerOptions: {
-          isCustomElement: element => element.startsWith('iconify-icon')
-        }
-      }
+          isCustomElement: (element) => element.startsWith('iconify-icon'),
+        },
+      },
     }),
     vueDevTools({
-      launchEditor: 'nvr'
+      launchEditor: 'nvr',
     }),
   ],
   resolve: {
     alias: {
-      '@': fileURLToPath(new URL('./src', import.meta.url))
+      '@': fileURLToPath(new URL('./src', import.meta.url)),
     },
   },
 })
