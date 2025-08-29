@@ -1,4 +1,5 @@
 import { supabase } from '@/lib/supabaseClient'
+import type { CreateNewTask } from '@/types/CreateNewForm'
 import type { QueryData } from '@supabase/supabase-js'
 
 export const tasksWithProjectsQuery = supabase.from('tasks').select(`
@@ -36,7 +37,7 @@ export const projectDetailsQuery = (slug: string) =>
     .single() // get single obj
 export type ProjectDetails = QueryData<ReturnType<typeof projectDetailsQuery>>
 
-export const updateProjectQuery = (updateProject ={}, id: number) => {
+export const updateProjectQuery = (updateProject = {}, id: number) => {
   return supabase.from('projects').update(updateProject).eq('id', id)
 }
 
@@ -59,7 +60,7 @@ export const taskDetailsQuery = (id: string) =>
 
 export type TaskDetailsQuery = QueryData<ReturnType<typeof taskDetailsQuery>>
 
-export const updateTaskQuery = (updateTask = {}, id: number) =>{
+export const updateTaskQuery = (updateTask = {}, id: number) => {
   return supabase.from('tasks').update(updateTask).eq('id', id)
 }
 
@@ -72,8 +73,10 @@ export const profilesQuery = supabase.from('profiles').select(`id, full_name`)
 
 // Get profiles in ids
 export const groupedProfilesQuery = (userIds: string[]) => {
-  return supabase
-    .from('profiles').select('username, avatar_url, id, full_name').in('id', userIds)
+  return supabase.from('profiles').select('username, avatar_url, id, full_name').in('id', userIds)
 }
 export type Collabs = QueryData<ReturnType<typeof groupedProfilesQuery>>
 
+export const createNewTaskQuery = (newTask: CreateNewTask) => {
+  return supabase.from('tasks').insert(newTask)
+}
