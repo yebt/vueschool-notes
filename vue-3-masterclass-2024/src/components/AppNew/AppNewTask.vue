@@ -1,7 +1,47 @@
 <script setup lang="ts">
 import type { CreateNewTask } from '@/types/CreateNewForm'
+import { profilesQuery, projectsQuery } from '@/utils/supaQueries'
 
 const sheetOpen = defineModel<boolean>()
+
+type SelectOption = { label: string; value: number | string }
+
+const selectOptions = ref({
+  projects: [] as SelectOption[],
+  profiles: [] as SelectOption[],
+})
+
+const getProjectOptions = async () => {
+  const { data: allProjects } = await projectsQuery
+
+  if (!allProjects) return
+
+  allProjects.forEach((proj) => {
+    selectOptions.value.projects.push({
+      label: proj.name,
+      value: proj.id,
+    })
+  })
+}
+
+const getProfilesOptions = async () => {
+  const { data: allProfiles } = await profilesQuery
+
+  if (!allProfiles) return
+
+  allProfiles.forEach((prof) => {
+    selectOptions.value.profiles.push({
+      label: prof.full_name,
+      value: prof.id,
+    })
+  })
+}
+
+const getOptions = async () => {
+  await Promise.all([getProjectOptions(), getProfilesOptions()])
+}
+
+getOptions()
 
 const createtask = async (formData: CreateNewTask) => {
   await new Promise((resolve) => {
@@ -10,7 +50,6 @@ const createtask = async (formData: CreateNewTask) => {
     }, 2000)
   })
 }
-
 </script>
 
 <template>
@@ -34,14 +73,7 @@ const createtask = async (formData: CreateNewTask) => {
             id="for"
             label="For"
             placeholder="Select a user"
-            :options="[{ label: 'Item name', value: 1 }]"
-          />
-          <FormKit
-            type="textarea"
-            name="description"
-            id="description"
-            label="Description"
-            placeholder="Task description"
+            :options="selectOptions.profiles"
           />
           <FormKit
             type="select"
@@ -50,9 +82,16 @@ const createtask = async (formData: CreateNewTask) => {
             label="Project"
             placeholder="Select a
           project"
-            :options="[{ label: 'Item name', value: 1 }]"
+            :options="selectOptions.projects"
           />
         </FormKit>
+        <FormKit
+          type="textarea"
+          name="description"
+          id="description"
+          label="Description"
+          placeholder="Task description"
+        />
       </SheetHeader>
     </SheetContent>
   </Sheet>

@@ -68,6 +68,8 @@ export const profileQuery = ({ column, value }: { column: string; value: string 
   return supabase.from('profiles').select().eq(column, value).single()
 }
 
+export const profilesQuery = supabase.from('profiles').select(`id, full_name`)
+
 // Get profiles in ids
 export const groupedProfilesQuery = (userIds: string[]) => {
   return supabase
