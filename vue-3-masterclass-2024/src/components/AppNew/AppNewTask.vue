@@ -1,7 +1,5 @@
 <script setup lang="ts">
-
 const sheetOpen = defineModel<boolean>()
-
 </script>
 
 <template>
@@ -10,7 +8,7 @@ const sheetOpen = defineModel<boolean>()
       <SheetHeader>
         <SheetTitle> Create new Task </SheetTitle>
         <SheetDescription>
-          content
+          <FormKit type="text" />
         </SheetDescription>
       </SheetHeader>
     </SheetContent>
