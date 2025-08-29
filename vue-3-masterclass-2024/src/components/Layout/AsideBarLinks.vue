@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import type { LinkProp } from '@/types/Generals/Aside'
-import { useWindowSize } from '@vueuse/core';
+import { menuKey, type MenuInjectionOptions } from '@/utils/injectionKeys';
 
 
 defineProps<{
@@ -16,17 +16,9 @@ const emitActionClicked = (linkTitle: string) => {
   emits('actionClicked', linkTitle)
 }
 
-const { menuOpen } = useMenu()
 
-const windowWidth = useWindowSize().width
+const { menuOpen } = inject(menuKey) as MenuInjectionOptions
 
-watchEffect(()=>{
-  if (windowWidth.value > 1024){
-    menuOpen.value = true
-  }else {
-    menuOpen.value = false
-  }
-})
 </script>
 
 <template>

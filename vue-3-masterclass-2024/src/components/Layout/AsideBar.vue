@@ -1,6 +1,8 @@
 <script setup lang="ts">
 import type { LinkProp } from '@/types/Generals/Aside'
+import { menuKey, type MenuInjectionOptions } from '@/utils/injectionKeys'
 import { logout } from '@/utils/supaAuth'
+import { useWindowSize } from '@vueuse/core'
 
 const links: LinkProp[] = [
   {
@@ -55,7 +57,17 @@ const executeAction = async (linkTitle: string) => {
 
 const emit = defineEmits(['newTaskClicked'])
 
-const { menuOpen, toggleMenu } = useMenu()
+const { menuOpen, toggleMenu } = inject(menuKey) as MenuInjectionOptions
+
+const windowWidth = useWindowSize().width
+
+watchEffect(()=>{
+  if (windowWidth.value > 1024){
+    menuOpen.value = true
+  }else {
+    menuOpen.value = false
+  }
+})
 </script>
 
 <template>
