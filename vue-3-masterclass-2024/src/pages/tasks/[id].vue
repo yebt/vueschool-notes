@@ -5,7 +5,7 @@ const { id } = useRoute('/tasks/[id]').params
 
 const taskLoader = useTasksStore()
 const { singleTask } = storeToRefs(taskLoader)
-const { getSingleTask, updateTask } = taskLoader
+const { getSingleTask, updateTask, deleteTask } = taskLoader
 
 const taskCollabs = ref<Collabs>([])
 
@@ -35,104 +35,124 @@ if (singleTask.value) {
     taskCollabs.value = collabsResult
   })
 }
+
+const deleteLoading = ref(false)
+const router = useRouter()
+const triggetDelete = async () => {
+  deleteLoading.value = true
+  await deleteTask()
+  deleteLoading.value = false
+  router.push({ name: '/tasks/' })
+}
+
 // const collabs = singleTask.value?.collaborators
 //   ? await getProfilesByIds(singleTask.value?.collaborators)
 //   : []
 </script>
 
 <template>
-  <Table v-if="singleTask">
-    <TableRow>
-      <TableHead> Name </TableHead>
-      <TableCell>
-        <AppInPlaceEditText v-model="singleTask.name" @commit="updateTask" />
-      </TableCell>
-      <!-- <TableCell> {{ singleTask.name }} </TableCell> -->
-    </TableRow>
-    <TableRow>
-      <TableHead> Description </TableHead>
-      <TableCell>
-        <AppInPlaceEditTextarea v-model="singleTask.description" @commit="updateTask" />
-        <!-- {{ singleTask.description }} -->
-      </TableCell>
-    </TableRow>
-    <!-- <TableRow> -->
-    <!--   <TableHead> Assignee </TableHead> -->
-    <!--   <TableCell> {{ singleTask.collaborators }} </TableCell> -->
-    <!-- </TableRow> -->
-    <TableRow>
-      <TableHead> Project </TableHead>
-      <TableCell>
-        <RouterLink
-          v-if="singleTask.projects"
-          :to="{ name: '/projects/[slug]', params: { slug: singleTask.projects.slug } }"
-          class="hover:underline p-3"
-        >
-          {{ singleTask.projects.name }}
-        </RouterLink>
-        <span v-else> .... </span>
-      </TableCell>
-    </TableRow>
-    <TableRow>
-      <TableHead> Status </TableHead>
-      <TableCell>
-        <!-- {{ singleTask.status }} -->
-        <AppInPlaceEditStatus v-model="singleTask.status" @commit="updateTask" />
-      </TableCell>
-    </TableRow>
-    <TableRow>
-      <TableHead> Collaborators </TableHead>
-      <TableCell>
-        <div class="flex">
-          <Avatar v-if="singleTask.collaborators.length > 0 && taskCollabs.length == 0">
-            <AvatarFallback class="animate-ping" />
-          </Avatar>
-          <Avatar
-            v-else-if="singleTask.collaborators.length > 0"
-            class="-mr-4 border border-primary hover:scale-110 transition-transform"
-            v-for="collaborator in taskCollabs"
-            :key="collaborator.id"
+  <div class="flex flex-col justify-center items-center">
+    <Table v-if="singleTask">
+      <TableRow>
+        <TableHead> Name </TableHead>
+        <TableCell>
+          <AppInPlaceEditText v-model="singleTask.name" @commit="updateTask" />
+        </TableCell>
+        <!-- <TableCell> {{ singleTask.name }} </TableCell> -->
+      </TableRow>
+      <TableRow>
+        <TableHead> Description </TableHead>
+        <TableCell>
+          <AppInPlaceEditTextarea v-model="singleTask.description" @commit="updateTask" />
+          <!-- {{ singleTask.description }} -->
+        </TableCell>
+      </TableRow>
+      <!-- <TableRow> -->
+      <!--   <TableHead> Assignee </TableHead> -->
+      <!--   <TableCell> {{ singleTask.collaborators }} </TableCell> -->
+      <!-- </TableRow> -->
+      <TableRow>
+        <TableHead> Project </TableHead>
+        <TableCell>
+          <RouterLink
+            v-if="singleTask.projects"
+            :to="{ name: '/projects/[slug]', params: { slug: singleTask.projects.slug } }"
+            class="hover:underline p-3"
           >
-            <RouterLink
-              class="w-full h-full flex items-center justify-center"
-              :to="{ name: '/users/[username]', params: { username: collaborator.username } }"
+            {{ singleTask.projects.name }}
+          </RouterLink>
+          <span v-else> .... </span>
+        </TableCell>
+      </TableRow>
+      <TableRow>
+        <TableHead> Status </TableHead>
+        <TableCell>
+          <!-- {{ singleTask.status }} -->
+          <AppInPlaceEditStatus v-model="singleTask.status" @commit="updateTask" />
+        </TableCell>
+      </TableRow>
+      <TableRow>
+        <TableHead> Collaborators </TableHead>
+        <TableCell>
+          <div class="flex">
+            <Avatar v-if="singleTask.collaborators.length > 0 && taskCollabs.length == 0">
+              <AvatarFallback class="animate-ping" />
+            </Avatar>
+            <Avatar
+              v-else-if="singleTask.collaborators.length > 0"
+              class="-mr-4 border border-primary hover:scale-110 transition-transform"
+              v-for="collaborator in taskCollabs"
+              :key="collaborator.id"
             >
-              <AvatarImage :src="collaborator.avatar_url || ''" :alt="collaborator.username" />
-              <AvatarFallback> </AvatarFallback>
-            </RouterLink>
-          </Avatar>
-        </div>
-      </TableCell>
-    </TableRow>
-    <TableRow class="hover:bg-transparent">
-      <TableHead class="align-top pt-4"> Comments </TableHead>
+              <RouterLink
+                class="w-full h-full flex items-center justify-center"
+                :to="{ name: '/users/[username]', params: { username: collaborator.username } }"
+              >
+                <AvatarImage :src="collaborator.avatar_url || ''" :alt="collaborator.username" />
+                <AvatarFallback> </AvatarFallback>
+              </RouterLink>
+            </Avatar>
+          </div>
+        </TableCell>
+      </TableRow>
+      <TableRow class="hover:bg-transparent">
+        <TableHead class="align-top pt-4"> Comments </TableHead>
 
-      <TableCell>
-        Comments cards goes in here..
+        <TableCell>
+          Comments cards goes in here..
 
-        <div class="flex flex-col justify-between p-3 bg-muted my-2 rounded-md">
-          <textarea
-            placeholder="Add your comment.."
-            class="w-full max-w-full overflow-y-auto prose-sm prose border rounded dark:prose-invert hover:border-muted bg-background border-muted p-3"
-          ></textarea>
-          <div class="flex justify-between mt-3">
-            <Button> Comment </Button>
-            <div class="flex gap-4">
-              <button variant="ghost" @click.prevent>
-                <iconify-icon icon="lucide:paperclip"></iconify-icon>
-                <span class="sr-only">Attach file</span>
-              </button>
-              <button variant="ghost" @click.prevent>
-                <iconify-icon icon="lucide:image-up"></iconify-icon>
+          <div class="flex flex-col justify-between p-3 bg-muted my-2 rounded-md">
+            <textarea
+              placeholder="Add your comment.."
+              class="w-full max-w-full overflow-y-auto prose-sm prose border rounded dark:prose-invert hover:border-muted bg-background border-muted p-3"
+            ></textarea>
+            <div class="flex justify-between mt-3">
+              <Button> Comment </Button>
+              <div class="flex gap-4">
+                <button variant="ghost" @click.prevent>
+                  <iconify-icon icon="lucide:paperclip"></iconify-icon>
+                  <span class="sr-only">Attach file</span>
+                </button>
+                <button variant="ghost" @click.prevent>
+                  <iconify-icon icon="lucide:image-up"></iconify-icon>
 
-                <span class="sr-only">Upload image</span>
-              </button>
+                  <span class="sr-only">Upload image</span>
+                </button>
+              </div>
             </div>
           </div>
-        </div>
-      </TableCell>
-    </TableRow>
-  </Table>
+        </TableCell>
+      </TableRow>
+    </Table>
+
+    <Button @click="triggetDelete" class="self-end mt-3 w-full max-w-40" variant="destructive">
+      <Transition name="scale" mode="out-in">
+        <iconify-icon v-if="!deleteLoading" icon="lucide:trash-2" class="mr-1"></iconify-icon>
+        <iconify-icon v-else icon="lucide:loader-circle" class="mr-1 animate-spin"></iconify-icon>
+      </Transition>
+      Delete Task
+    </Button>
+  </div>
 </template>
 
 <style scoped>
