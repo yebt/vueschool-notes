@@ -15,6 +15,7 @@ declare module 'vue' {
     AppInPlaceEditStatus: typeof import('./src/components/AppInPlaceEdit/AppInPlaceEditStatus.vue')['default']
     AppInPlaceEditText: typeof import('./src/components/AppInPlaceEdit/AppInPlaceEditText.vue')['default']
     AppInPlaceEditTextarea: typeof import('./src/components/AppInPlaceEdit/AppInPlaceEditTextarea.vue')['default']
+    AppNewTask: typeof import('./src/components/AppNew/AppNewTask.vue')['default']
     AsideBar: typeof import('./src/components/Layout/AsideBar.vue')['default']
     AsideBarLinks: typeof import('./src/components/Layout/AsideBarLinks.vue')['default']
     AuthLayout: typeof import('./src/components/Layout/main/AuthLayout.vue')['default']

@@ -52,6 +52,9 @@ const executeAction = async (linkTitle: string) => {
     if (isLoggedOut) router.push('/login')
   }
 }
+
+const emit = defineEmits(['newTaskClicked'])
+
 </script>
 
 <template>
@@ -70,7 +73,7 @@ const executeAction = async (linkTitle: string) => {
           </Button>
         </DropdownMenuTrigger>
         <DropdownMenuContent>
-          <DropdownMenuItem> Task </DropdownMenuItem>
+          <DropdownMenuItem @click="emit('newTaskClicked')"> Task </DropdownMenuItem>
           <DropdownMenuItem> Project </DropdownMenuItem>
         </DropdownMenuContent>
       </DropdownMenu>
