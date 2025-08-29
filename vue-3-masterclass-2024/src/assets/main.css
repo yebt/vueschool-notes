@@ -122,7 +122,7 @@
   }
 }
 
-
+/*Transition scale*/
 .scale-enter-active,
 .scale-leave-active {
   transition: transform 0.1s;
@@ -133,3 +133,13 @@
   transform: scale(0.3);
 }
 
+/*Transition fade*/
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.5s ease;
+}
+
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
+}
